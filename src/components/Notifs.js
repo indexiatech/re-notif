@@ -9,7 +9,6 @@ import Notif from './Notif'
 class Notifs extends Component {
   render(){
     const { notifs } = this.props
-    console.log("!!!!!!!!!!", notifs)
     const items = notifs.map((n) => {
       return (
         <Notif key={getter(n, 'id')} message={getter(n, 'message')} kind={getter(n, 'kind')}/>
