@@ -1,6 +1,6 @@
 {
   "name": "re-notif",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Redux & React based Notifications center",
   "scripts": {
     "start": "node server.js",
