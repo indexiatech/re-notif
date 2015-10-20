@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Re-Notif Demo</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <style>
+      .notif-enter {
+        opacity: 0.01;
+        transition: opacity .5s ease-in;
+      }
+
+      .notif-enter.notif-enter-active {
+        opacity: 1;
+      }
+
+      .notif-leave {
+        opacity: 1;
+        transition: opacity .5s ease-in;
+      }
+
+      .notif-leave.notif-leave-active {
+        opacity: 0.01;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Demo</h1>
+    <div id="root"/>
+    <script src="/static/demo.js"></script>
+  </body>
+</html>

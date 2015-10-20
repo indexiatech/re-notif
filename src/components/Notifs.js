@@ -1,33 +1,41 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-//import TransitionGroup from 'react/lib/ReactCSSTransitionGroup'
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import TransitionGroup from 'react/lib/ReactCSSTransitionGroup';
+import classnames from 'classnames';
 
-const getter = (obj, propName) => {return obj.get ? obj.get(propName) : obj[propName]}
+const getter = (obj, propName) => {return obj.get ? obj.get(propName) : obj[propName]};
 
-import Notif from './Notif'
+import Notif from './Notif';
 
 class Notifs extends Component {
-  render(){
-    const { notifs } = this.props
-    const items = notifs.map((n) => {
+  static propTypes = {
+    theme: PropTypes.object,
+    className: PropTypes.string,
+    CustomComponent: PropTypes.func,
+    forceNotifsStyles: PropTypes.bool
+  }
+
+  render() {
+    const { notifs, theme, className, CustomComponent, forceNotifsStyles} = this.props;
+
+    const items = notifs.map((notif) => {
       return (
-        <Notif key={getter(n, 'id')} message={getter(n, 'message')} kind={getter(n, 'kind')}/>
-      )
-    })
+        <Notif key={getter(notif, 'id')} message={getter(notif, 'message')} kind={getter(notif, 'kind')} theme={theme} CustomComponent={CustomComponent}/>
+      );
+    });
+
+    const componentStyles = forceNotifsStyles || !theme ? styles : {};
     return (
-      <div className='notif-container' style={styles}>
-      {/*Currently disabled due to: https://github.com/facebook/react/issues/1326}
-      <TransitionGroup transitionName="notif">
-        {items}
-      </TransitionGroup>
-      */}
-     {items}
+      <div className={classnames('notif-container', className)} style={componentStyles}>
+        <TransitionGroup transitionName="notif">
+          {items}
+        </TransitionGroup>
       </div>
-    )
+    );
   }
 }
 
-var styles = {
+const styles = {
   position: 'fixed',
   top: '10px',
   right: 0,
@@ -36,11 +44,11 @@ var styles = {
   width: '80%',
   maxWidth: 400,
   margin: 'auto'
-}
+};
 
 export default connect(
   (state) => {
-    return { notifs: state.get ? state.get('notifs') : state.notifs }
+    return { notifs: state.get ? state.get('notifs') : state.notifs };
   },
   { }
-)(Notifs)
+)(Notifs);

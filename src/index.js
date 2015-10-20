@@ -1,7 +1,7 @@
-import notifReducer from './reducers/notifs'
-import * as notifActions from './actions/notifs'
-import NotifsComponent from './components/Notifs'
+import reducer from './reducers/notifs';
+import * as actions from './actions/notifs';
+import Notifs from './components/Notifs';
 
 export {
-  notifReducer, notifActions, NotifsComponent
-}
+  Notifs, actions, reducer
+};

@@ -1,6 +1,6 @@
-export const NOTIF_SEND = 'NOTIF_SEND'
-export const NOTIF_DISMISS = 'NOTIF_DISMISS'
-export const NOTIF_CLEAR = 'NOTIF_CLEAR'
+export const NOTIF_SEND = 'NOTIF_SEND';
+export const NOTIF_DISMISS = 'NOTIF_DISMISS';
+export const NOTIF_CLEAR = 'NOTIF_CLEAR';
 
 /**
  * Publish a notification,
@@ -9,27 +9,27 @@ export const NOTIF_CLEAR = 'NOTIF_CLEAR'
  */
 export function notifSend(notif) {
   if (!notif.id) {
-    notif.id = new Date().getTime()
+    notif.id = new Date().getTime();
   }
   return dispatch => {
-    dispatch({ type: NOTIF_SEND, payload: notif })
+    dispatch({ type: NOTIF_SEND, payload: notif });
 
     if (notif.dismissAfter) {
-      setTimeout(() => { dispatch({ type: NOTIF_DISMISS, payload: notif.id}) }, notif.dismissAfter)
+      setTimeout(() => { dispatch({ type: NOTIF_DISMISS, payload: notif.id}); }, notif.dismissAfter);
     }
-  }
+  };
 }
 
 /**
  * Dismiss a notification by the given id.
  */
 export function notifDismiss(id) {
-  return { type: NOTIF_DISMISS, payload: id }
+  return { type: NOTIF_DISMISS, payload: id };
 }
 
 /**
  * Clear all notifications
  */
 export function notifClear() {
-  return { type: NOTIF_CLEAR }
+  return { type: NOTIF_CLEAR };
 }
