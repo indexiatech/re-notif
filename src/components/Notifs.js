@@ -13,7 +13,9 @@ class Notifs extends Component {
     className: PropTypes.string,
     CustomComponent: PropTypes.func,
     forceNotifsStyles: PropTypes.bool,
-    stateSelector: PropTypes.func
+    stateSelector: PropTypes.func,
+	transitionEnterTimeout: PropTypes.number,
+	transitionLeaveTimeout: PropTypes.number,
   }
 
   render() {
@@ -28,7 +30,7 @@ class Notifs extends Component {
     const componentStyles = forceNotifsStyles || !theme ? styles : {};
     return (
       <div className={classnames('notif-container', className)} style={componentStyles}>
-        <TransitionGroup transitionName="notif">
+        <TransitionGroup transitionName="notif" transitionEnterTimeout={transitionEnterTimeout || 500} transitionLeaveTimeout={transitionLeaveTimeout || 500}>
           {items}
         </TransitionGroup>
       </div>

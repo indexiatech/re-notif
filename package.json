@@ -1,6 +1,6 @@
 {
   "name": "re-notif",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Redux & React based Notifications center",
   "scripts": {
     "start": "cd demo && node server.js",
@@ -16,6 +16,7 @@
     }
   },
   "main": "lib/index.js",
+  "typings": "./re-notif.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/indexiatech/re-notif.git"
