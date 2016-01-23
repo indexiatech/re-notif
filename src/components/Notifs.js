@@ -12,7 +12,8 @@ class Notifs extends Component {
     theme: PropTypes.object,
     className: PropTypes.string,
     CustomComponent: PropTypes.func,
-    forceNotifsStyles: PropTypes.bool
+    forceNotifsStyles: PropTypes.bool,
+    stateSelector: PropTypes.func
   }
 
   render() {
@@ -47,8 +48,8 @@ const styles = {
 };
 
 export default connect(
-  (state) => {
-    return { notifs: state.get ? state.get('notifs') : state.notifs };
+  (state, ownProps) => {
+    return { notifs: ownProps.stateSelector ? ownProps.stateSelector(state) : state.notifs };
   },
   { }
 )(Notifs);
