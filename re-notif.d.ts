@@ -1,7 +1,4 @@
-﻿///<reference path='../react/react.d.ts' />
-///<reference path='../redux/redux.d.ts' />
-declare module ReNotif {
-    import React = __React;
+﻿declare module ReNotif {
     interface ThemeProps {
         /**
          * The CSS classes to attach to an info notification.
@@ -51,10 +48,7 @@ declare module ReNotif {
          * @default 500
          */
         transitionLeaveTimeout?: number,
-    }
-    class Notifs extends React.Component<NotifsProps, {}> {
-        render(): React.DOMElement<any>;
-    }
+    }    
 
     interface ActionConfig {
         /**
@@ -83,7 +77,7 @@ declare module ReNotif {
 }
 
 declare var actions: ReNotif.Actions;
-declare var reducer: Redux.Reducer;
+declare var reducer: any;
 declare var Notifs: typeof ReNotif.Notifs;
 
 declare module 're-notif' {
