@@ -19,7 +19,7 @@ class Notifs extends Component {
   }
 
   render() {
-    const { notifs, theme, className, CustomComponent, forceNotifsStyles} = this.props;
+    const { notifs, theme, className, CustomComponent, forceNotifsStyles, transitionEnterTimeout, transitionLeaveTimeout} = this.props;
 
     const items = notifs.map((notif) => {
       return (
