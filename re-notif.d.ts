@@ -78,7 +78,7 @@
 
 declare var actions: ReNotif.Actions;
 declare var reducer: any;
-declare var Notifs: typeof ReNotif.Notifs;
+declare var Notifs: any;
 
 declare module 're-notif' {
     export { actions, reducer, Notifs }
