@@ -12,11 +12,14 @@ class Notifs extends Component {
     theme: PropTypes.object,
     className: PropTypes.string,
     CustomComponent: PropTypes.func,
-    forceNotifsStyles: PropTypes.bool
+    forceNotifsStyles: PropTypes.bool,
+    stateSelector: PropTypes.func,
+	transitionEnterTimeout: PropTypes.number,
+	transitionLeaveTimeout: PropTypes.number,
   }
 
   render() {
-    const { notifs, theme, className, CustomComponent, forceNotifsStyles} = this.props;
+    const { notifs, theme, className, CustomComponent, forceNotifsStyles, transitionEnterTimeout, transitionLeaveTimeout} = this.props;
 
     const items = notifs.map((notif) => {
       return (
@@ -27,7 +30,7 @@ class Notifs extends Component {
     const componentStyles = forceNotifsStyles || !theme ? styles : {};
     return (
       <div className={classnames('notif-container', className)} style={componentStyles}>
-        <TransitionGroup transitionName="notif">
+        <TransitionGroup transitionName="notif" transitionEnterTimeout={transitionEnterTimeout || 500} transitionLeaveTimeout={transitionLeaveTimeout || 500}>
           {items}
         </TransitionGroup>
       </div>
@@ -47,8 +50,8 @@ const styles = {
 };
 
 export default connect(
-  (state) => {
-    return { notifs: state.get ? state.get('notifs') : state.notifs };
+  (state, ownProps) => {
+    return { notifs: ownProps.stateSelector ? ownProps.stateSelector(state) : state.notifs };
   },
   { }
 )(Notifs);

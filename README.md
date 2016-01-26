@@ -45,7 +45,7 @@ class App extends Component {
 ## Sending notifications
 
 Thanks to Redux, sending notification is simply done by firing an `Action`:
-
+``` javascript
 import { reducer as notifReducer, actions as notifActions, Notifs } from 're-notif';
 const { notifSend } = notifActions;
 
@@ -58,7 +58,7 @@ class Demo extends Component {
     <button onClick={::this.send}>Send</button>
   }
 }
-
+```
 # Demo
 
 [Watch the demo](http://indexiatech.github.io/re-notif) or [checkout its source code](https://github.com/indexiatech/re-notif/blob/master/demo/index.js)
@@ -94,11 +94,15 @@ class Demo extends Component {
 
 > The notification's message.
 
+#### - `stateSelector : Function`
+
+> A custom state selector that will be used by the Redux `connect` function to select the slice of your state tree where you mounted the notifications reducer. Example: `<Notifs stateSelector={ (state) => state.somewhere.notif } />`
+
 ---
 
 ## Reducer
 
-> The notifications reducer, should be mounted under `notifs`.
+> The notifications reducer, should be mounted under `notifs`, unless you provide a `stateSelector` prop to the `<Notifs>` component, in which case the mount point will be determined by the slice of `state` selected.
 
 ---
 
