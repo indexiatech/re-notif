@@ -49,6 +49,7 @@ Thanks to Redux, sending notification is simply done by firing an `Action`:
 import { reducer as notifReducer, actions as notifActions, Notifs } from 're-notif';
 const { notifSend } = notifActions;
 
+```js
 class Demo extends Component {
   send() {
     this.props.dispatch(notifSend({message: 'hello world', kind: 'info', dismissAfter: 2000}));
@@ -58,7 +59,7 @@ class Demo extends Component {
     <button onClick={::this.send}>Send</button>
   }
 }
-
+```
 # Demo
 
 [Watch the demo](http://indexiatech.github.io/re-notif) or [checkout its source code](https://github.com/indexiatech/re-notif/blob/master/demo/index.js)
