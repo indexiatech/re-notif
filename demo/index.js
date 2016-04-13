@@ -20,7 +20,7 @@ class CustomNotif extends Component {
 class Demo extends Component {
   constructor() {
     super();
-    this.state = {msg: 'hello!', kind: 'info', dismissAfter: 2000, customStyles: false, customComponent: false};
+    this.state = {msg: 'hello!', kind: 'info', dismissAfter: undefined, customStyles: false, customComponent: false};
   }
 
   onKindChange(ev) {
@@ -32,7 +32,7 @@ class Demo extends Component {
   }
 
   handleDismissAfter(ev) {
-    this.setState({dismissAfter: ev.target.value});
+    this.setState({dismissAfter: parseFloat(ev.target.value)});
   }
 
   send() {
@@ -71,7 +71,7 @@ class Demo extends Component {
 
     return (
       <div className="content">
-        {!customComponent && <Notifs theme={theme} forceNotifsStyles />}
+        {!customComponent && <Notifs theme={theme} forceNotifsStyles dismissAfter={2000} />}
         {customComponent && <Notifs theme={theme} CustomComponent={CustomNotif}/>}
         <div className="row">
           <div className="col col-md-3">

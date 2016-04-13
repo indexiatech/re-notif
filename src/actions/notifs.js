@@ -13,10 +13,6 @@ export function notifSend(notif) {
   }
   return dispatch => {
     dispatch({ type: NOTIF_SEND, payload: notif });
-
-    if (notif.dismissAfter) {
-      setTimeout(() => { dispatch({ type: NOTIF_DISMISS, payload: notif.id}); }, notif.dismissAfter);
-    }
   };
 }
 

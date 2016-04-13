@@ -5,6 +5,7 @@ import classnames from 'classnames';
 
 const getter = (obj, propName) => {return obj.get ? obj.get(propName) : obj[propName]};
 
+import { notifDismiss } from '../actions/notifs';
 import Notif from './Notif';
 
 class Notifs extends Component {
@@ -15,12 +16,30 @@ class Notifs extends Component {
     forceNotifsStyles: PropTypes.bool
   }
 
-  render() {
-    const { notifs, theme, className, CustomComponent, forceNotifsStyles} = this.props;
+  constructor(props) {
+    super(props);
 
+    this.onDismiss = this.onDismiss.bind(this);
+  }
+
+  onDismiss(id) {
+    this.props.dispatch(notifDismiss(id));
+  }
+
+  render() {
+    const { notifs, theme, className, CustomComponent, forceNotifsStyles, dismissAfter} = this.props;
     const items = notifs.map((notif) => {
       return (
-        <Notif key={getter(notif, 'id')} message={getter(notif, 'message')} kind={getter(notif, 'kind')} theme={theme} CustomComponent={CustomComponent}/>
+        <Notif 
+          key={getter(notif, 'id')} 
+          id={getter(notif, 'id')} 
+          message={getter(notif, 'message')} 
+          kind={getter(notif, 'kind')} 
+          theme={theme} 
+          CustomComponent={CustomComponent} 
+          dismissAfter={notif.dismissAfter || dismissAfter} 
+          onDismiss={this.onDismiss}
+        />
       );
     });
 
@@ -49,6 +68,5 @@ const styles = {
 export default connect(
   (state) => {
     return { notifs: state.get ? state.get('notifs') : state.notifs };
-  },
-  { }
+  }
 )(Notifs);
