@@ -70,23 +70,7 @@ class Demo extends Component {
 
 ## Components
 
-### `<Notifs theme={object} CustomComponent={ReactComponent}/>`
-
-#### - `theme.infoClasses : string` [optional]
-
-> The CSS classes to attach to an `info` kind notification.
-
-#### - `theme.successClasses : string` [optional]
-
-> The CSS classes to attach to an `success` kind notification.
-
-#### - `theme.warningClasses : string` [optional]
-
-> The CSS classes to attach to an `warning` kind notification.
-
-#### - `theme.dangerClasses : string` [optional]
-
-> The CSS classes to attach to an `danger` kind notification.
+### `<Notifs CustomComponent={ReactComponent}/>`
 
 #### - `CustomComponent : React Component`
 

@@ -6,6 +6,8 @@ import thunk from 'redux-thunk';
 import { reducer as notifReducer, actions as notifActions, Notifs } from 're-notif';
 const { notifSend, notifClear } = notifActions;
 
+import './re-notif.scss';
+
 function CustomNotif(props) {
   return (
     <button className="btn btn-primary btn-lg btn-block">
@@ -21,7 +23,7 @@ CustomNotif.propTypes = {
 class Demo extends Component {
   constructor() {
     super();
-    this.state = { msg: 'hello!', kind: 'info', dismissAfter: 2000, customStyles: false, customComponent: false };
+    this.state = { msg: 'hello!', kind: 'info', dismissAfter: 2000, customComponent: false };
   }
 
   onKindChange(ev) {
@@ -44,35 +46,19 @@ class Demo extends Component {
     this.props.notifClear();
   }
 
-  toggleCustomStyles() {
-    const { customStyles } = this.state;
-    this.setState({ customStyles: !customStyles });
-  }
-
   toggleCustomComponent() {
     const { customComponent } = this.state;
     this.setState({ customComponent: !customComponent });
   }
 
   render() {
-    const { msg, kind, dismissAfter, customStyles, customComponent } = this.state;
+    const { msg, kind, dismissAfter, customComponent } = this.state;
     const kinds = ['info', 'success', 'warning', 'danger'];
-
-    let theme;
-    if (customStyles) {
-      theme = {
-        defaultClasses: 'alert',
-        successClasses: 'alert-success',
-        infoClasses: 'alert-info',
-        warningClasses: 'alert-warning',
-        dangerClasses: 'alert-danger'
-      };
-    }
 
     return (
       <div className="content">
-        {!customComponent && <Notifs theme={theme} forceNotifsStyles />}
-        {customComponent && <Notifs theme={theme} CustomComponent={CustomNotif} />}
+        {!customComponent && <Notifs />}
+        {customComponent && <Notifs CustomComponent={CustomNotif} />}
         <div className="row">
           <div className="col col-md-3">
             <form className="form-group">
@@ -90,13 +76,6 @@ class Demo extends Component {
                     </label>
                   </div>
                 )}
-                <div className="form-group">
-                  <div className="checkbox">
-                    <label>
-                      <input type="checkbox" value={customStyles} onClick={this.toggleCustomStyles.bind(this)} /> Custom Styles
-                    </label>
-                  </div>
-                </div>
                 <div className="form-group">
                   <div className="checkbox">
                     <label>

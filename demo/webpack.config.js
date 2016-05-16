@@ -46,9 +46,11 @@ module.exports = {
     {
       test: /\.html$/,
       loader: 'file?name=[name].[ext]',
+      exclude: npmPath,
     }, {
       test: /\.scss$/,
-      loaders: ['style', 'css', 'sass']
+      loaders: ['style', 'css', 'sass'],
+      exclude: npmPath,
     }, {
       test: /\.png|\.jpg$/,
       loaders: ['file-loader']

@@ -8,39 +8,51 @@ const getter = (obj, propName) => (obj.get ? obj.get(propName) : obj[propName]);
 import Notif from './Notif';
 
 function Notifs(props) {
-  const { notifs, theme, className, CustomComponent, forceNotifsStyles } = props;
+  const { notifs, className, componentClassName, CustomComponent, transitionEnterTimeout, transitionLeaveTimeout, onActionClick, action } = props;
 
   const items = notifs.map((notif) => (
-    <Notif key={getter(notif, 'id')} message={getter(notif, 'message')} kind={getter(notif, 'kind')} theme={theme} CustomComponent={CustomComponent} />
+    <Notif
+      key={getter(notif, 'id')}
+      message={getter(notif, 'message')}
+      kind={getter(notif, 'kind')}
+      componentClassName={componentClassName}
+      CustomComponent={CustomComponent}
+      onActionClick={onActionClick}
+      action={action}
+    />
   ));
 
-  const styles = {
-    position: 'fixed',
-    top: '10px',
-    right: 0,
-    left: 0,
-    zIndex: 1000,
-    width: '80%',
-    maxWidth: 400,
-    margin: 'auto'
-  };
-
-  const componentStyles = forceNotifsStyles || !theme ? styles : {};
   return (
-    <div className={classnames('notif-container', className)} style={componentStyles}>
-      <TransitionGroup transitionName="notif" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
+    <div className={classnames(`${componentClassName}__container`, className)} >
+      <TransitionGroup
+        transitionName={`${componentClassName}-transition`}
+        transitionEnterTimeout={transitionEnterTimeout}
+        transitionLeaveTimeout={transitionLeaveTimeout}
+      >
         {items}
       </TransitionGroup>
     </div>
   );
 }
 
+Notifs.defaultProps = {
+  componentClassName: 'notif',
+  transitionEnterTimeout: 600,
+  transitionLeaveTimeout: 600,
+  onActionClick: null,
+  action: null,
+};
+
 Notifs.propTypes = {
   notifs: React.PropTypes.array,
   theme: React.PropTypes.object,
   className: React.PropTypes.string,
   CustomComponent: React.PropTypes.func,
-  forceNotifsStyles: React.PropTypes.bool
+  componentClassName: React.PropTypes.string,
+  transitionEnterTimeout: React.PropTypes.number,
+  transitionLeaveTimeout: React.PropTypes.number,
+  onActionClick: React.PropTypes.func,
+  action: React.PropTypes.string,
 };
 
 export default connect((state) => ({ notifs: state.get ? state.get('notifs') : state.notifs }), {})(Notifs);
