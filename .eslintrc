@@ -1,5 +1,5 @@
 {
-  "extends": "eslint-config-airbnb",
+  "extends": "airbnb",
   "env": {
     "browser": true,
     "node": true,
@@ -8,6 +8,7 @@
   "rules": {
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,
+    "react/jsx-no-bind": 0,
     "react/react-in-jsx-scope": 2,
     "react/jsx-quotes": 0,
     "jsx-quotes": 2,
@@ -17,6 +18,7 @@
     "no-alert": 0,
     "no-param-reassign": 0,
     "no-shadow": 0,
+    "max-len": 0,
     "no-undef": 2, // why this is not default?!
   },
   "plugins": [

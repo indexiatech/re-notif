@@ -46,6 +46,7 @@ class App extends Component {
 
 Thanks to Redux, sending notification is simply done by firing an `Action`:
 
+```
 import { reducer as notifReducer, actions as notifActions, Notifs } from 're-notif';
 const { notifSend } = notifActions;
 
@@ -58,6 +59,7 @@ class Demo extends Component {
     <button onClick={::this.send}>Send</button>
   }
 }
+```
 
 # Demo
 
@@ -68,23 +70,7 @@ class Demo extends Component {
 
 ## Components
 
-### `<Notifs theme={object} CustomComponent={ReactComponent}/>`
-
-#### - `theme.infoClasses : string` [optional]
-
-> The CSS classes to attach to an `info` kind notification.
-
-#### - `theme.successClasses : string` [optional]
-
-> The CSS classes to attach to an `success` kind notification.
-
-#### - `theme.warningClasses : string` [optional]
-
-> The CSS classes to attach to an `warning` kind notification.
-
-#### - `theme.dangerClasses : string` [optional]
-
-> The CSS classes to attach to an `danger` kind notification.
+### `<Notifs CustomComponent={ReactComponent}/>`
 
 #### - `CustomComponent : React Component`
 

@@ -15,7 +15,7 @@ export function notifSend(notif) {
     dispatch({ type: NOTIF_SEND, payload: notif });
 
     if (notif.dismissAfter) {
-      setTimeout(() => { dispatch({ type: NOTIF_DISMISS, payload: notif.id}); }, notif.dismissAfter);
+      setTimeout(() => { dispatch({ type: NOTIF_DISMISS, payload: notif.id }); }, notif.dismissAfter);
     }
   };
 }

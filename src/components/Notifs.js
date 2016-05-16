@@ -1,54 +1,58 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import TransitionGroup from 'react/lib/ReactCSSTransitionGroup';
+import TransitionGroup from 'react-addons-css-transition-group';
 import classnames from 'classnames';
 
-const getter = (obj, propName) => {return obj.get ? obj.get(propName) : obj[propName]};
+const getter = (obj, propName) => (obj.get ? obj.get(propName) : obj[propName]);
 
 import Notif from './Notif';
 
-class Notifs extends Component {
-  static propTypes = {
-    theme: PropTypes.object,
-    className: PropTypes.string,
-    CustomComponent: PropTypes.func,
-    forceNotifsStyles: PropTypes.bool
-  }
+function Notifs(props) {
+  const { notifs, className, componentClassName, CustomComponent, transitionEnterTimeout, transitionLeaveTimeout, onActionClick, action } = props;
 
-  render() {
-    const { notifs, theme, className, CustomComponent, forceNotifsStyles} = this.props;
+  const items = notifs.map((notif) => (
+    <Notif
+      key={getter(notif, 'id')}
+      message={getter(notif, 'message')}
+      kind={getter(notif, 'kind')}
+      componentClassName={componentClassName}
+      CustomComponent={CustomComponent}
+      onActionClick={onActionClick}
+      action={action}
+    />
+  ));
 
-    const items = notifs.map((notif) => {
-      return (
-        <Notif key={getter(notif, 'id')} message={getter(notif, 'message')} kind={getter(notif, 'kind')} theme={theme} CustomComponent={CustomComponent}/>
-      );
-    });
-
-    const componentStyles = forceNotifsStyles || !theme ? styles : {};
-    return (
-      <div className={classnames('notif-container', className)} style={componentStyles}>
-        <TransitionGroup transitionName="notif">
-          {items}
-        </TransitionGroup>
-      </div>
-    );
-  }
+  return (
+    <div className={classnames(`${componentClassName}__container`, className)} >
+      <TransitionGroup
+        transitionName={`${componentClassName}-transition`}
+        transitionEnterTimeout={transitionEnterTimeout}
+        transitionLeaveTimeout={transitionLeaveTimeout}
+      >
+        {items}
+      </TransitionGroup>
+    </div>
+  );
 }
 
-const styles = {
-  position: 'fixed',
-  top: '10px',
-  right: 0,
-  left: 0,
-  zIndex: 1000,
-  width: '80%',
-  maxWidth: 400,
-  margin: 'auto'
+Notifs.defaultProps = {
+  componentClassName: 'notif',
+  transitionEnterTimeout: 600,
+  transitionLeaveTimeout: 600,
+  onActionClick: null,
+  action: null,
 };
 
-export default connect(
-  (state) => {
-    return { notifs: state.get ? state.get('notifs') : state.notifs };
-  },
-  { }
-)(Notifs);
+Notifs.propTypes = {
+  notifs: React.PropTypes.array,
+  theme: React.PropTypes.object,
+  className: React.PropTypes.string,
+  CustomComponent: React.PropTypes.func,
+  componentClassName: React.PropTypes.string,
+  transitionEnterTimeout: React.PropTypes.number,
+  transitionLeaveTimeout: React.PropTypes.number,
+  onActionClick: React.PropTypes.func,
+  action: React.PropTypes.string,
+};
+
+export default connect((state) => ({ notifs: state.get ? state.get('notifs') : state.notifs }), {})(Notifs);
