@@ -1,15 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import classnames from 'classnames';
-const { string, func, number, shape } = PropTypes;
+const { string, func, number, shape, CustomComponent, node } = PropTypes;
 
 /**
  * A single notification component
  */
 class Notif extends Component {
-  static defaultProps = {
-    kind: 'info'
-  }
-
   constructor() {
     super();
     this._id = new Date().getTime();
@@ -20,7 +16,7 @@ class Notif extends Component {
    * Handle action click event
    * @description Handle click events on the
    */
-  _onActionClick = (event) => {
+  _onActionClick(event) {
     event.preventDefault();
     if (this.props.onClick) {
       this.props.onActionClick();
@@ -32,14 +28,31 @@ class Notif extends Component {
   render() {
     const { theme, kind, CustomComponent, action } = this.props;
 
+    const baseStyles = {
+      position: 'relative',
+      font: '1rem normal Helvetica, sans-serif',
+      overflow: 'hidden',
+      borderRadius: 4,
+      marginBottom: 2,
+      maxHeight: 400,
+      boxSizing: 'border-box',
+      boxShadow: '0 0 1px 1px rgba(10, 10, 11, .125)',
+      padding: '0.5rem',
+      color: '#fff'
+    };
+
+    const statusStyles = {
+      success: { backgroundColor: '#64ce83' },
+      info: { backgroundColor: '#3ea2ff' },
+      warning: { backgroundColor: '#ff7f48' },
+      danger: { backgroundColor: '#e74c3c' }
+    };
+
     let classes;
     let styles = {};
     if (!theme) {
-      const stylesPerType = stylesNotif[kind];
-      styles = {
-        ...stylesNotif.base,
-        ...stylesPerType,
-      };
+      const stylesPerType = statusStyles[kind];
+      styles = { baseStyles, stylesPerType };
     } else {
       classes = classnames('re-notif', theme.defaultClasses, theme[`${kind}Classes`]);
     }
@@ -47,7 +60,7 @@ class Notif extends Component {
     const component = !CustomComponent ?
       <div className={classes} style={styles}>
         <div>
-          <div className="notif-icon"/>
+          <div className="notif-icon" />
           <div className="notif-content">
             <span className="notif-message">{this.props.message}</span>
           </div>
@@ -56,59 +69,15 @@ class Notif extends Component {
               <button onClick={this._onActionClick}>{this.props.action}</button>
             </span>
           }
-          <div className="notif-close"/>
+          <div className="notif-close" />
         </div>
       </div>
       :
-      <CustomComponent {...this.props}/>;
+      <CustomComponent {...this.props} />;
 
     return component;
   }
 }
-
-const stylesNotif = {
-  base: {
-    position: 'relative',
-    font: '1rem normal Helvetica, sans-serif',
-    overflow: 'hidden',
-    'borderRadius': 4,
-    'marginBottom': 2,
-    'maxHeight': 400,
-    boxSizing: 'border-box',
-    boxShadow: '0 0 1px 1px rgba(10, 10, 11, .125)',
-    padding: '0.5rem',
-    color: '#fff'
-  },
-
-  success: {
-    backgroundColor: '#64ce83'
-  },
-
-  info: {
-    backgroundColor: '#3ea2ff'
-  },
-
-  warning: {
-    backgroundColor: '#ff7f48'
-  },
-
-  danger: {
-    backgroundColor: '#e74c3c'
-  }
-};
-
-const styleCountdown = {
-  base: {
-    position: 'absolute',
-    bottom: 0,
-    width: 0,
-    height: 4
-  },
-
-  info: {
-    'backgroundColor': '#71bbff'
-  }
-};
 
 Notif.propTypes = {
   /*
@@ -149,7 +118,12 @@ Notif.propTypes = {
     infoClasses: string,
     warningClasses: string,
     dangerClasses: string
-  })
+  }),
+
+  CustomComponent: node
 };
+
+Notif.defaultProps = { kind: 'info' };
+
 
 export default Notif;
