@@ -46,6 +46,7 @@ class App extends Component {
 
 Thanks to Redux, sending notification is simply done by firing an `Action`:
 
+```js
 import { reducer as notifReducer, actions as notifActions, Notifs } from 're-notif';
 const { notifSend } = notifActions;
 
@@ -58,6 +59,7 @@ class Demo extends Component {
     <button onClick={::this.send}>Send</button>
   }
 }
+```
 
 # Demo
 
