@@ -16,6 +16,12 @@ class Notif extends Component {
     this._onActionClick = this._onActionClick.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.dismissAfter) {
+      setTimeout(() => this.props.onDismiss(this.props.id), this.props.dismissAfter);
+    }
+  }
+
   /*
    * Handle action click event
    * @description Handle click events on the
