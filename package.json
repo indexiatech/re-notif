@@ -1,6 +1,6 @@
 {
   "name": "re-notif",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Redux & React based Notifications center",
   "scripts": {
     "start": "cd demo && node server.js",
@@ -30,9 +30,9 @@
     "classnames": "^2.2.0"
   },
   "peerDependencies": {
-    "redux": "^2.0.0 || ^3.0.0",
+    "redux": "^2.0.0 || ^3.0.0 || ^4.0.0",
     "react-redux": "^2.0.0 || ^3.1.0 || ^4.0.0",
-    "react": "^0.13.3 || ^0.14.0"
+    "react": "^0.13.3 || ^0.14.0 || ^15.0"
   },
   "devDependencies": {
     "babel": "^5.8.23",
