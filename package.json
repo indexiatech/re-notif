@@ -19,7 +19,6 @@
   },
   "homepage": "http://indexiatech.github.io/re-notif",
   "dependencies": {
-    "classnames": "^2.2.0",
     "react-addons-css-transition-group": "^15.0.2"
   },
   "peerDependencies": {

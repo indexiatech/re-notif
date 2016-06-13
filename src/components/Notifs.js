@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TransitionGroup from 'react-addons-css-transition-group';
-import classnames from 'classnames';
 
 const getter = (obj, propName) => (obj.get ? obj.get(propName) : obj[propName]);
 
@@ -23,7 +22,7 @@ function Notifs(props) {
   ));
 
   return (
-    <div className={classnames(`${componentClassName}__container`, className)} >
+    <div className={`${componentClassName}__container ${className}`} >
       <TransitionGroup
         transitionName={`${componentClassName}-transition`}
         transitionEnterTimeout={transitionEnterTimeout}

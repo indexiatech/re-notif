@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 
 class Notif extends React.Component {
   constructor() {
@@ -23,14 +22,8 @@ class Notif extends React.Component {
 
   render() {
     const { kind, CustomComponent, componentClassName, action } = this.props;
-
-    const classes = [
-      componentClassName,
-      `${componentClassName}--${kind}`,
-    ];
-
     const component = !CustomComponent ?
-      <div className={classnames(classes)}>
+      <div className={`${componentClassName} ${componentClassName}--${kind}`}>
           <div className={`${componentClassName}__icon`} />
           <div className={`${componentClassName}__content`}>
             <span className={`${componentClassName}__message`}>{this.props.message}</span>
