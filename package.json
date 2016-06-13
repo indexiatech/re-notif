@@ -23,9 +23,9 @@
     "react-addons-css-transition-group": "^15.0.2"
   },
   "peerDependencies": {
-    "redux": "^3.4.0",
-    "react-redux": "^4.4.0",
-    "react": "^15.0.0"
+    "redux": "2.0.0 || ^3.0.0",
+    "react-redux": "^3.1.0 || ^4.0.0",
+    "react": "^0.14.0 || ^15.0.0"
   },
   "devDependencies": {
     "babel": "^5.8.23",
