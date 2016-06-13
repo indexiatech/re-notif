@@ -6,8 +6,6 @@ import thunk from 'redux-thunk';
 import { reducer as notifReducer, actions as notifActions, Notifs } from 're-notif';
 const { notifSend, notifClear } = notifActions;
 
-import './re-notif.scss';
-
 function CustomNotif(props) {
   return (
     <button className="btn btn-primary btn-lg btn-block">

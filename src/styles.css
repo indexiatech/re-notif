@@ -1,19 +1,19 @@
 .notif-transition-enter {
   opacity    : 0.01;
   transition : opacity .5s ease-in;
+}
 
-  &-active {
+.notif-transition-enter-active {
     opacity : 1;
-  }
 }
 
 .notif-transition-leave {
   opacity    : 1;
   transition : opacity .5s ease-in;
+}
 
-  &-active {
+.notif-transition-leave-active {
     opacity : 0.01;
-  }
 }
 
 .notif {

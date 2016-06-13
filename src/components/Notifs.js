@@ -2,12 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import TransitionGroup from 'react-addons-css-transition-group';
 
+// These can be overridden by changing the componentClassName prop
+import '../styles.css';
+
 const getter = (obj, propName) => (obj.get ? obj.get(propName) : obj[propName]);
 
 import Notif from './Notif';
 
 function Notifs(props) {
-  const { notifs, className, componentClassName, CustomComponent, transitionEnterTimeout, transitionLeaveTimeout, onActionClick, action } = props;
+  const { notifs, className, componentClassName, CustomComponent, transitionEnterTimeout, transitionLeaveTimeout, onActionClick, actionLabel } = props;
 
   const items = notifs.map((notif) => (
     <Notif
@@ -17,7 +20,7 @@ function Notifs(props) {
       componentClassName={componentClassName}
       CustomComponent={CustomComponent}
       onActionClick={onActionClick}
-      action={action}
+      actionLabel={actionLabel}
     />
   ));
 
@@ -50,7 +53,7 @@ Notifs.propTypes = {
   transitionEnterTimeout: React.PropTypes.number,
   transitionLeaveTimeout: React.PropTypes.number,
   onActionClick: React.PropTypes.func,
-  action: React.PropTypes.string,
+  actionLabel: React.PropTypes.string,
 };
 
 export default connect((state) => ({ notifs: state.get ? state.get('notifs') : state.notifs }), {})(Notifs);
