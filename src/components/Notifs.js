@@ -44,7 +44,6 @@ Notifs.defaultProps = {
 
 Notifs.propTypes = {
   notifs: React.PropTypes.array,
-  theme: React.PropTypes.object,
   className: React.PropTypes.string,
   CustomComponent: React.PropTypes.func,
   componentClassName: React.PropTypes.string,
