@@ -1,5 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
+var npmPath = path.resolve(__dirname, '../node_modules');
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -13,8 +14,9 @@ module.exports = {
     filename: 'demo.js',
     publicPath: '/static/'
   },
-  resolveLoader: {
-    modulesDirectories: ['../node_modules']
+  resolveLoader: { modulesDirectories: [npmPath] },
+  resolve: {
+    extensions: ['', '.css', '.js', '.json', '.jsx', '.scss', '.webpack.js', '.web.js'],
   },
   plugins: [
     // new webpack.optimize.OccurenceOrderPlugin(),
@@ -28,17 +30,27 @@ module.exports = {
     )
   ],
   module: {
-    loaders: [{
-      test: /\.js$/,
+    preLoaders: [
+      {
+        test: /\.js?$/,
+        loader: 'eslint-loader',
+        exclude: npmPath,
+      },
+    ],
+    loaders: [
+    {
+      test: /\.js?$/,
       loaders: ['babel'],
-      exclude: /node_modules/,
-      include: [path.join(__dirname), path.join(__dirname, '../src')]
-    }, {
+      exclude: npmPath,
+    },
+    {
       test: /\.html$/,
       loader: 'file?name=[name].[ext]',
+      exclude: npmPath,
     }, {
       test: /\.scss$/,
-      loaders: ['style', 'css', 'sass']
+      loaders: ['style', 'css', 'sass'],
+      exclude: npmPath,
     }, {
       test: /\.png|\.jpg$/,
       loaders: ['file-loader']

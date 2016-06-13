@@ -2,126 +2,119 @@
 
 [React](https://github.com/facebook/react) & [Redux](https://github.com/rackt/redux) based notifications center.
 
-Thanks to Redux, the notification objects are maintained within Redux Store's State and are fired by Actions,
+Thanks to Redux, the notification objects are maintained within Redux Store's State and are fired by Actions.
 
-Features such auto dismiss and styling are supported (see below)
+## Implementation
 
-
-# Setup
-
-## Installation
+##### 1. Installation
 
 `npm install --save re-notif`
 
-Note: for the fade animation to work properly, the css file `re-notif/lib/re-notif.css` must be included
-
-## Enhance reducer
-
-Enhance Your Redux root reducer with the notification reducer:
-
+##### 2. The next thing you need to do is to add the `re-notif` `reducer` to Redux.
 ```js
+import { createStore, combineReducers } from 'redux'
 import { reducer as notifReducer } from 're-notif';
 combineReducers({
   notifs: notifReducer,
-  ...more reducers here...
+  // ... more reducers here ...
 })
 ```
 
-## Notifications Container Placement
-
-In your application DOM tag put the `Notifs` component
-
+##### 3. Add the `Notifs` component at the root of your app
 ```js
+import { Provider }  from 'react-redux'
 import { Notifs } from 're-notif';
-class App extends Component {
-  render() {
-    <div className="content">
-      <Notifs/>
-    </div>
-  }
-}
+
+<Provider store={store}>
+  <div>
+    // ... other things like router ...
+    <Notifs />
+  </div>
+</Provider>
 ```
 
 ## Sending notifications
 
 Thanks to Redux, sending notification is simply done by firing an `Action`:
 
-```js
+```
 import { reducer as notifReducer, actions as notifActions, Notifs } from 're-notif';
 const { notifSend } = notifActions;
 
-class Demo extends Component {
+class Demo extends React.Component {
   send() {
-    this.props.dispatch(notifSend({message: 'hello world', kind: 'info', dismissAfter: 2000}));
+    this.props.dispatch(notifSend({
+      message: 'hello world',
+      kind: 'info',
+      dismissAfter: 2000
+    }));
   }
 
   render() {
-    <button onClick={::this.send}>Send</button>
+    <button onClick={this.send}>Send Notification</button>
   }
 }
 ```
 
-# Demo
+## Demo
 
 [Watch the demo](http://indexiatech.github.io/re-notif) or [checkout its source code](https://github.com/indexiatech/re-notif/blob/master/demo/index.js)
 
+## API
 
-# API
+### Actions
 
-## Components
+#### `actions.sendNotif({config})`
 
-### `<Notifs theme={object} CustomComponent={ReactComponent}/>`
+##### `config.message : string` [required]
+> The notification message.
 
-#### - `theme.infoClasses : string` [optional]
+##### `config.componentClassName : string` [optional] [default:'notif']
+> The base className for the Notif component. Can be used to override CSS styles.
 
-> The CSS classes to attach to an `info` kind notification.
-
-#### - `theme.successClasses : string` [optional]
-
-> The CSS classes to attach to an `success` kind notification.
-
-#### - `theme.warningClasses : string` [optional]
-
-> The CSS classes to attach to an `warning` kind notification.
-
-#### - `theme.dangerClasses : string` [optional]
-
-> The CSS classes to attach to an `danger` kind notification.
-
-#### - `CustomComponent : React Component`
-
-> A custom component to render for every notification fired, component will have the following props:
-
-##### - `props.message`
-
-> The notification's message.
-
----
-
-## Reducer
-
-> The notifications reducer, should be mounted under `notifs`.
-
----
-
-## Actions
-
-### `actions.sendNotif(config:Object)`
-
-> Send a notification
-
-#### -`config.message : string`
-
-> The notification message
-
-#### - `config.kind : enum` [optional]
-
+##### `config.kind : string` [optional] [default:'info']
 > The notification kind, can be one of: `info`, `success`, `warning`, `danger`.
 
-#### - `config.dismissAfter: integer` [optional]
+##### `config.id : string` [optional] [default:Date.now()]
+> Set an ID for the notification. If not set, defaults to Date.now().
 
-> Auto dismiss the notification after the given number of MS.
+##### `config.dismissAfter : integer` [optional] [default:null]
+> Auto dismiss the notification after the given number of milliseconds.
 
-### `actions.notifClear()`
+##### `config.transitionEnterTimeout : integer` [optional] [default:600]
+> Define the react-transition-group enter timeout is milliseconds.
 
+##### `config.transitionLeaveTimeout : integer` [optional] [default:600]
+> Define the react-transition-group leave timeout is milliseconds.
+
+#### `actions.notifClear()`
 > Clear all current notifications.
+
+#### `actions.notifDismiss(id)`
+> Dismiss a notification by ID
+
+---
+
+### Custom Component
+
+#### `<Notifs CustomComponent={ReactComponent}/>`
+
+##### `CustomComponent : React component`
+> A custom react component can be used instead of the default Notif component
+
+##### `message : string`
+> The notification's message
+
+##### `actionLabel : string`
+> Label for action click
+
+##### `onActionClick : func`
+> Function when action is clicked. Requires `actionLabel` prop
+
+## Development
+
+`git clone https://github.com/indexiatech/re-notif.git`
+`cd re-notif`
+`npm install`
+`npm run start`
+Listening on localhost:3000
