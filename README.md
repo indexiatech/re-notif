@@ -64,7 +64,7 @@ class Demo extends React.Component {
 
 ### Actions
 
-#### `actions.sendNotif({config})`
+#### `actions.notifSend({config})`
 
 ##### `config.message : string` [required]
 > The notification message.
