@@ -16,7 +16,7 @@ module.exports = {
   },
   resolveLoader: { modulesDirectories: [npmPath] },
   resolve: {
-    extensions: ['', '.css', '.js', '.json', '.jsx', '.css', '.webpack.js', '.web.js'],
+    extensions: ['', '.css', '.js', '.json', '.jsx', '.webpack.js', '.web.js'],
   },
   plugins: [
     // new webpack.optimize.OccurenceOrderPlugin(),
