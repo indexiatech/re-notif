@@ -64,7 +64,7 @@ class Demo extends React.Component {
 
 ### Actions
 
-#### `actions.sendNotif({config})`
+#### `actions.notifSend({config})`
 
 ##### `config.message : string` [required]
 > The notification message.
@@ -113,8 +113,10 @@ class Demo extends React.Component {
 
 ## Development
 
-`git clone https://github.com/indexiatech/re-notif.git`
-`cd re-notif`
-`npm install`
-`npm run start`
+```
+git clone https://github.com/indexiatech/re-notif.git
+cd re-notif
+npm install
+npm run start
+```
 Listening on localhost:3000
