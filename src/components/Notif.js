@@ -13,7 +13,7 @@ class Notif extends React.Component {
    */
   _onActionClick(event) {
     event.preventDefault();
-    if (this.props.onClick) {
+    if (this.props.onActionClick) {
       this.props.onActionClick();
     } else {
       return;
@@ -50,10 +50,8 @@ Notif.propTypes = {
   message: React.PropTypes.string.isRequired,
   kind: React.PropTypes.oneOf(['success', 'info', 'warning', 'danger']).isRequired,
   componentClassName: React.PropTypes.string,
-  onClick: React.PropTypes.func,
   onActionClick: React.PropTypes.func,
   actionLabel: React.PropTypes.string,
-  dismissAfter: React.PropTypes.number,
   CustomComponent: React.PropTypes.node
 };
 
