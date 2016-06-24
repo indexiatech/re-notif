@@ -16,7 +16,7 @@ module.exports = {
   },
   resolveLoader: { modulesDirectories: [npmPath] },
   resolve: {
-    extensions: ['', '.css', '.js', '.json', '.jsx', '.scss', '.webpack.js', '.web.js'],
+    extensions: ['', '.css', '.js', '.json', '.jsx', '.webpack.js', '.web.js'],
   },
   plugins: [
     // new webpack.optimize.OccurenceOrderPlugin(),
@@ -48,8 +48,8 @@ module.exports = {
       loader: 'file?name=[name].[ext]',
       exclude: npmPath,
     }, {
-      test: /\.scss$/,
-      loaders: ['style', 'css', 'sass'],
+      test: /\.css$/,
+      loaders: ['style', 'css'],
       exclude: npmPath,
     }, {
       test: /\.png|\.jpg$/,
