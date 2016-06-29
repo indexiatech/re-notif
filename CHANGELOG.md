@@ -1,6 +1,7 @@
-# Re-Notif Changelog
+# Redux-Notifications Changelog
 
-### 2.0.0 (June 24 2016)
+### 2.0.0 (June 28 2016)
+- MARJOR: Renamed package to `redux-notifications` on NPM
 - Proper linting
 - Removed unused code
 - #9 Support for React 15

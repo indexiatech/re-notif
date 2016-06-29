@@ -1,4 +1,6 @@
-# `re-notif`
+# `redux-notifications`
+
+> :warning: The previous package `re-notif` has been deprecated on NPM and renamed to `redux-notifications`. A list of changes can be found in the Changelog. Please update your applications accordingly.
 
 [React](https://github.com/facebook/react) & [Redux](https://github.com/rackt/redux) based notifications center.
 
@@ -8,7 +10,7 @@ Thanks to Redux, the notification objects are maintained within Redux Store's St
 
 ##### 1. Installation
 
-`npm install --save re-notif`
+`npm install --save redux-notifications`
 
 ##### 2. The next thing you need to do is to add the `re-notif` `reducer` to Redux.
 ```js
