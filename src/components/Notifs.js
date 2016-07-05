@@ -15,6 +15,7 @@ function Notifs(props) {
   const items = notifs.map((notif) => (
     <Notif
       key={getter(notif, 'id')}
+      id={getter(notif, 'id')}
       message={getter(notif, 'message')}
       kind={getter(notif, 'kind')}
       componentClassName={componentClassName}
