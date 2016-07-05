@@ -4,30 +4,38 @@ import { Provider, connect } from 'react-redux';
 import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { reducer as notifReducer, actions as notifActions, Notifs } from 're-notif';
-const { notifSend, notifClear } = notifActions;
+const { notifSend, notifClear, notifDismiss } = notifActions;
 
 function CustomNotif(props) {
   return (
-    <button className="btn btn-primary btn-lg btn-block">
+    <button className="btn btn-primary btn-lg btn-block" onClick={() => {
+      if (props.onActionClick) {
+        props.onActionClick(props.id);
+      }
+    }}>
       {props.message}
     </button>
   );
 }
 CustomNotif.propTypes = {
+  id: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
   message: React.PropTypes.string,
+  onActionClick: React.PropTypes.func
 };
 
 // React component
 class Demo extends Component {
   constructor() {
     super();
-    this.state = { msg: 'hello!', kind: 'info', dismissAfter: 2000, customComponent: false };
+    this.state = { msg: 'hello!', kind: 'info', dismissAfter: 2000, customComponent: false, handleClick: false };
     this.handleChange = this.handleChange.bind(this);
     this.onKindChange = this.onKindChange.bind(this);
     this.toggleCustomComponent = this.toggleCustomComponent.bind(this);
+    this.toggleHandleClick = this.toggleHandleClick.bind(this);
     this.handleDismissAfter = this.handleDismissAfter.bind(this);
     this.clear = this.clear.bind(this);
     this.send = this.send.bind(this);
+    this.dismiss = this.dismiss.bind(this);
   }
 
   onKindChange(ev) {
@@ -50,19 +58,38 @@ class Demo extends Component {
     this.props.notifClear();
   }
 
+  dismiss(id) {
+    this.props.notifDismiss(id);
+  }
+
   toggleCustomComponent() {
     const { customComponent } = this.state;
     this.setState({ customComponent: !customComponent });
   }
 
+  toggleHandleClick() {
+    const { handleClick } = this.state;
+    this.setState({ handleClick: !handleClick });
+  }
+
   render() {
-    const { msg, kind, dismissAfter, customComponent } = this.state;
+    const { msg, kind, dismissAfter, customComponent, handleClick } = this.state;
     const kinds = ['info', 'success', 'warning', 'danger'];
+
+    let notifsComponent;
+    if (customComponent && handleClick) {
+      notifsComponent = <Notifs CustomComponent={CustomNotif} onActionClick={id => this.dismiss(id)} actionLabel="close" />;
+    } else if (customComponent) {
+      notifsComponent = <Notifs CustomComponent={CustomNotif} />;
+    } else if (handleClick) {
+      notifsComponent = <Notifs onActionClick={id => this.dismiss(id)} actionLabel="close" />;
+    } else {
+      notifsComponent = <Notifs />;
+    }
 
     return (
       <div className="content">
-        {!customComponent && <Notifs />}
-        {customComponent && <Notifs CustomComponent={CustomNotif} />}
+        {notifsComponent}
         <div className="row">
           <div className="col col-md-3">
             <form className="form-group">
@@ -88,6 +115,13 @@ class Demo extends Component {
                   </div>
                 </div>
                 <div className="form-group">
+                  <div className="checkbox">
+                    <label>
+                      <input type="checkbox" value={handleClick} onClick={this.toggleHandleClick} /> Handle Click (onActionClick)
+                    </label>
+                  </div>
+                </div>
+                <div className="form-group">
                   <label>Dismiss After (ms)</label>
                   <input className="form-control" type="text" value={dismissAfter} onChange={this.handleDismissAfter} />
                 </div>
@@ -104,7 +138,7 @@ class Demo extends Component {
 Demo.propTypes = {
   notifSend: React.PropTypes.func,
   notifClear: React.PropTypes.func,
-  onNotifSend: React.PropTypes.func,
+  notifDismiss: React.PropTypes.func
 };
 
 // Store:
@@ -124,7 +158,7 @@ function mapStateToProps(state) {
 // Connected Component:
 const App = connect(
   mapStateToProps,
-  { notifSend, notifClear }
+  { notifSend, notifClear, notifDismiss }
 )(Demo);
 
 render(
