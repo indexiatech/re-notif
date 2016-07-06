@@ -1,5 +1,10 @@
 # Redux-Notifications Changelog
 
+### 2.1.0 (June 28 2016)
+- Fixed custom component rendering
+- Pass ID to notif component
+- Fix `notifDismiss(id)` method
+
 ### 2.0.0 (June 28 2016)
 - MARJOR: Renamed package to `redux-notifications` on NPM
 - Proper linting
