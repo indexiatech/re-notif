@@ -104,6 +104,9 @@ class Demo extends React.Component {
 ##### `CustomComponent : React component`
 > A custom react component can be used instead of the default Notif component
 
+##### `id : string || number`
+> The notification's unique ID
+
 ##### `message : string`
 > The notification's message
 
