@@ -52,7 +52,11 @@ Notif.propTypes = {
   componentClassName: React.PropTypes.string,
   onActionClick: React.PropTypes.func,
   actionLabel: React.PropTypes.string,
-  CustomComponent: React.PropTypes.node
+  CustomComponent: React.PropTypes.oneOfType([
+    React.PropTypes.func,
+    React.PropTypes.node,
+    React.PropTypes.element
+  ]),
 };
 
 export default Notif;
