@@ -12,10 +12,10 @@ Thanks to Redux, the notification objects are maintained within Redux Store's St
 
 `npm install --save redux-notifications`
 
-##### 2. The next thing you need to do is to add the `re-notif` `reducer` to Redux.
+##### 2. The next thing you need to do is to add the `redux-notifications` `reducer` to Redux.
 ```js
 import { createStore, combineReducers } from 'redux'
-import { reducer as notifReducer } from 're-notif';
+import { reducer as notifReducer } from 'redux-notifications';
 combineReducers({
   notifs: notifReducer,
   // ... more reducers here ...
@@ -25,7 +25,7 @@ combineReducers({
 ##### 3. Add the `Notifs` component at the root of your app
 ```js
 import { Provider }  from 'react-redux'
-import { Notifs } from 're-notif';
+import { Notifs } from 'redux-notifications';
 
 <Provider store={store}>
   <div>
@@ -40,7 +40,7 @@ import { Notifs } from 're-notif';
 Thanks to Redux, sending notification is simply done by firing an `Action`:
 
 ```
-import { reducer as notifReducer, actions as notifActions, Notifs } from 're-notif';
+import { reducer as notifReducer, actions as notifActions, Notifs } from 'redux-notifications';
 const { notifSend } = notifActions;
 
 class Demo extends React.Component {
