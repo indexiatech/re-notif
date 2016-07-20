@@ -47,7 +47,7 @@ class Demo extends Component {
   }
 
   handleDismissAfter(ev) {
-    this.setState({dismissAfter: parseFloat(ev.target.value)});
+    this.setState({ dismissAfter: parseFloat(ev.target.value) });
   }
 
   send() {
