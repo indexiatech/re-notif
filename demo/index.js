@@ -27,7 +27,7 @@ CustomNotif.propTypes = {
 class Demo extends Component {
   constructor() {
     super();
-    this.state = { msg: 'hello!', kind: 'info', dismissAfter: 2000, customComponent: false, handleClick: false };
+    this.state = { msg: 'hello!', kind: 'info', dismissAfter: undefined, customComponent: false, handleClick: false };
     this.handleChange = this.handleChange.bind(this);
     this.onKindChange = this.onKindChange.bind(this);
     this.toggleCustomComponent = this.toggleCustomComponent.bind(this);
@@ -47,7 +47,7 @@ class Demo extends Component {
   }
 
   handleDismissAfter(ev) {
-    this.setState({ dismissAfter: ev.target.value });
+    this.setState({dismissAfter: parseFloat(ev.target.value)});
   }
 
   send() {
@@ -78,13 +78,13 @@ class Demo extends Component {
 
     let notifsComponent;
     if (customComponent && handleClick) {
-      notifsComponent = <Notifs CustomComponent={CustomNotif} onActionClick={id => this.dismiss(id)} actionLabel="close" />;
+      notifsComponent = <Notifs CustomComponent={CustomNotif} onActionClick={id => this.dismiss(id)} actionLabel="close" dismissAfter={dismissAfter} />;
     } else if (customComponent) {
-      notifsComponent = <Notifs CustomComponent={CustomNotif} />;
+      notifsComponent = <Notifs CustomComponent={CustomNotif} dismissAfter={dismissAfter} />;
     } else if (handleClick) {
-      notifsComponent = <Notifs onActionClick={id => this.dismiss(id)} actionLabel="close" />;
+      notifsComponent = <Notifs onActionClick={id => this.dismiss(id)} actionLabel="close" dismissAfter={dismissAfter} />;
     } else {
-      notifsComponent = <Notifs />;
+      notifsComponent = <Notifs dismissAfter={dismissAfter} />;
     }
 
     return (
