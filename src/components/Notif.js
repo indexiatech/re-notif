@@ -64,6 +64,8 @@ Notif.propTypes = {
     React.PropTypes.node,
     React.PropTypes.element
   ]),
+  onDismiss: React.PropTypes.func,
+  dismissAfter: React.PropTypes.number
 };
 
 export default Notif;

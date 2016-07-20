@@ -57,7 +57,8 @@ Notifs.propTypes = {
   transitionLeaveTimeout: React.PropTypes.number,
   onActionClick: React.PropTypes.func,
   actionLabel: React.PropTypes.string,
-  dismissAfter: React.PropTypes.number
+  dismissAfter: React.PropTypes.number,
+  notifDismiss: React.PropTypes.func
 };
 
 export default connect((state) => ({ notifs: state.get ? state.get('notifs') : state.notifs }), {})(Notifs);
