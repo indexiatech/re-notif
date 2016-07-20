@@ -31,7 +31,7 @@ class Notifs extends React.Component {
         componentClassName={componentClassName}
         CustomComponent={CustomComponent}
         dismissAfter={notif.dismissAfter || dismissAfter}
-        onDismiss={this.onDismiss}
+        onDismiss={this._onDismiss}
         onActionClick={onActionClick}
         actionLabel={actionLabel}
       />
