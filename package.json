@@ -1,11 +1,13 @@
 {
-  "name": "re-notif",
-  "version": "1.0.1",
+  "name": "redux-notifications",
+  "version": "2.1.0",
   "description": "Redux & React based Notifications center",
   "scripts": {
     "start": "cd demo && node server.js",
-    "build:lib": "BABEL_ENV=production babel src --out-dir lib",
-    "build:demo": "rimraf ./dist_demo && cd demo && webpack -p && mv dist_demo ../"
+    "clean": "rm -rf lib",
+    "build": "npm run clean && BABEL_ENV=production babel src --out-dir lib",
+    "lint": "eslint src",
+    "prepublish": "npm run lint && npm run build"
   },
   "main": "lib/index.js",
   "repository": {
@@ -19,12 +21,12 @@
   },
   "homepage": "http://indexiatech.github.io/re-notif",
   "dependencies": {
-    "classnames": "^2.2.0"
+    "react-addons-css-transition-group": "^15.0.2"
   },
   "peerDependencies": {
-    "redux": "^2.0.0 || ^3.0.0",
-    "react-redux": "^2.0.0 || ^3.1.0 || ^4.0.0",
-    "react": "^0.13.3 || ^0.14.0"
+    "redux": "2.0.0 || ^3.0.0",
+    "react-redux": "^3.1.0 || ^4.0.0",
+    "react": "^0.14.0 || ^15.0.0"
   },
   "devDependencies": {
     "babel": "^5.8.23",
@@ -32,28 +34,27 @@
     "babel-loader": "^5.3.2",
     "babel-plugin-react-transform": "^1.1.1",
     "babel-runtime": "^5.8.25",
-    "css-loader": "^0.20.2",
-    "eslint-plugin-react": "^3.6.3",
-    "express": "^4.13.3",
-    "file-loader": "^0.8.4",
-    "history": "^1.12.5",
-    "node-sass": "^3.3.3",
-    "react-dom": "^0.14.0",
-    "react-intl": "^2.0.0-pr-3",
+    "css-loader": "^0.23.0",
+    "eslint": "^2.13.0",
+    "eslint-config-airbnb": "^6.0.0",
+    "eslint-loader": "^1.1.1",
+    "eslint-plugin-babel": "^3.3.0",
+    "eslint-plugin-react": "^5.2.0",
+    "express": "^4.14.0",
+    "file-loader": "^0.9.0",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
     "react-redux": "^4.0.0",
     "react-router": "^1.0.0-rc3",
-    "react-router-bootstrap": "^0.19.2",
     "react-transform-hmr": "^1.0.1",
-    "redux": "^3.0.2",
-    "redux-devtools": "^2.1.5",
-    "redux-router": "^1.0.0-beta3",
-    "redux-thunk": "^1.0.0",
-    "rimraf": "^2.4.3",
-    "sass-loader": "^3.0.0",
-    "serve-static": "^1.10.0",
-    "style-loader": "^0.12.4",
-    "webpack": "^1.12.2",
-    "webpack-dev-middleware": "^1.2.0",
-    "webpack-hot-middleware": "^2.4.1"
+    "redux": "^3.5.2",
+    "redux-devtools": "^3.3.1",
+    "redux-thunk": "^2.1.0",
+    "rimraf": "^2.5.2",
+    "serve-static": "^1.10.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.0",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "^2.10.0"
   }
 }

@@ -5,7 +5,7 @@ export const NOTIF_CLEAR = 'NOTIF_CLEAR';
 /**
  * Publish a notification,
  * - if `dismissAfter` was set, the notification will be auto dismissed after the given period.
- * - if id wasn't specified, a time based id will be generated.
+ * - if id wasn't specified, a time based id will be generated.``
  */
 export function notifSend(notif) {
   if (!notif.id) {
