@@ -24,9 +24,13 @@ function Notifs(props) {
       actionLabel={actionLabel}
     />
   ));
+  const classes = [
+    `${componentClassName}__container`,
+    className || null
+  ].join(' ').split();
 
   return (
-    <div className={`${componentClassName}__container ${className}`} >
+    <div className={classes} >
       <TransitionGroup
         transitionName={`${componentClassName}-transition`}
         transitionEnterTimeout={transitionEnterTimeout}
@@ -39,11 +43,12 @@ function Notifs(props) {
 }
 
 Notifs.defaultProps = {
+  className: null,
   componentClassName: 'notif',
   transitionEnterTimeout: 600,
   transitionLeaveTimeout: 600,
   onActionClick: null,
-  action: null,
+  action: null
 };
 
 Notifs.propTypes = {
@@ -54,7 +59,7 @@ Notifs.propTypes = {
   transitionEnterTimeout: React.PropTypes.number,
   transitionLeaveTimeout: React.PropTypes.number,
   onActionClick: React.PropTypes.func,
-  actionLabel: React.PropTypes.string,
+  actionLabel: React.PropTypes.string
 };
 
 export default connect((state) => ({ notifs: state.get ? state.get('notifs') : state.notifs }), {})(Notifs);
