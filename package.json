@@ -1,6 +1,6 @@
 {
   "name": "redux-notifications",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Redux & React based Notifications center",
   "scripts": {
     "start": "cd demo && node server.js",
