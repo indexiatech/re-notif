@@ -8,14 +8,15 @@ export const NOTIF_CLEAR = 'NOTIF_CLEAR';
  * - if id wasn't specified, a time based id will be generated.``
  */
 export function notifSend(notif) {
-  if (!notif.id) {
-    notif.id = new Date().getTime();
+  const payload = Object.assign({}, notif);
+  if (!payload.id) {
+    payload.id = new Date().getTime();
   }
   return dispatch => {
-    dispatch({ type: NOTIF_SEND, payload: notif });
+    dispatch({ type: NOTIF_SEND, payload });
 
-    if (notif.dismissAfter) {
-      setTimeout(() => { dispatch({ type: NOTIF_DISMISS, payload: notif.id }); }, notif.dismissAfter);
+    if (payload.dismissAfter) {
+      setTimeout(() => { dispatch({ type: NOTIF_DISMISS, payload: payload.id }); }, payload.dismissAfter);
     }
   };
 }
