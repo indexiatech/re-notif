@@ -19,7 +19,6 @@ module.exports = {
     extensions: ['', '.css', '.js', '.json', '.jsx', '.webpack.js', '.web.js'],
   },
   plugins: [
-    // new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.NormalModuleReplacementPlugin(
@@ -51,9 +50,6 @@ module.exports = {
       test: /\.css$/,
       loaders: ['style', 'css'],
       exclude: npmPath,
-    }, {
-      test: /\.png|\.jpg$/,
-      loaders: ['file-loader']
     }]
   }
 };
