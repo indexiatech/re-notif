@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Notif = ({ kind, componentClassName, actionLabel, onActionClick, id }) => {
+const Notif = ({ kind, componentClassName, actionLabel, onActionClick, id, message }) => {
   const _onActionClick = (ev) => {
     ev.preventDefault();
 
@@ -15,11 +15,11 @@ const Notif = ({ kind, componentClassName, actionLabel, onActionClick, id }) => 
     <div className={`${componentClassName} ${componentClassName}--${kind}`}>
         <div className={`${componentClassName}__icon`} />
         <div className={`${componentClassName}__content`}>
-          <span className={`${componentClassName}__message`}>{this.props.message}</span>
+          <span className={`${componentClassName}__message`}>{message}</span>
         </div>
         { actionLabel &&
           <span className={`${componentClassName}__action`}>
-            <button onClick={_onActionClick}>{this.props.actionLabel}</button>
+            <button onClick={_onActionClick}>{actionLabel}</button>
           </span>
         }
         <div className={`${componentClassName}__close`} />
