@@ -62,17 +62,12 @@ class Demo extends React.Component {
 
 [Watch the demo](http://indexiatech.github.io/re-notif) or [checkout its source code](https://github.com/indexiatech/re-notif/blob/master/demo/index.js)
 
-## API
-
-### Actions
+## Actions
 
 #### `actions.notifSend({config})`
 
 ##### `config.message : string` [required]
 > The notification message.
-
-##### `config.componentClassName : string` [optional] [default:'notif']
-> The base className for the Notif component. Can be used to override CSS styles.
 
 ##### `config.kind : string` [optional] [default:'info']
 > The notification kind, can be one of: `info`, `success`, `warning`, `danger`.
@@ -83,12 +78,6 @@ class Demo extends React.Component {
 ##### `config.dismissAfter : integer` [optional] [default:null]
 > Auto dismiss the notification after the given number of milliseconds.
 
-##### `config.transitionEnterTimeout : integer` [optional] [default:600]
-> Define the react-transition-group enter timeout is milliseconds.
-
-##### `config.transitionLeaveTimeout : integer` [optional] [default:600]
-> Define the react-transition-group leave timeout is milliseconds.
-
 #### `actions.notifClear()`
 > Clear all current notifications.
 
@@ -97,18 +86,24 @@ class Demo extends React.Component {
 
 ---
 
-### Custom Component
+## Notifs Component
 
 #### `<Notifs CustomComponent={ReactComponent}/>`
 
 ##### `CustomComponent : React component`
 > A custom react component can be used instead of the default Notif component
 
-##### `id : string || number`
-> The notification's unique ID
+##### `className : string` [optional] [default:null]
+> Pass a custom classname to the <Notifs /> component.
 
-##### `message : string`
-> The notification's message
+##### `componentClassName : string` [optional] [default:'notif']
+> The base className for each Notif component. Can be used to override CSS styles.
+
+##### `transitionEnterTimeout : integer` [optional] [default:600]
+> Define the react-transition-group enter timeout is milliseconds.
+
+##### `transitionLeaveTimeout : integer` [optional] [default:600]
+> Define the react-transition-group leave timeout is milliseconds.
 
 ##### `actionLabel : string`
 > Label for action click

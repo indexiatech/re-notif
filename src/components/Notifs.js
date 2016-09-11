@@ -54,7 +54,11 @@ Notifs.defaultProps = {
 Notifs.propTypes = {
   notifs: React.PropTypes.array,
   className: React.PropTypes.string,
-  CustomComponent: React.PropTypes.func,
+  CustomComponent: React.PropTypes.oneOfType([
+    React.PropTypes.func,
+    React.PropTypes.node,
+    React.PropTypes.element
+  ]),
   componentClassName: React.PropTypes.string,
   transitionEnterTimeout: React.PropTypes.number,
   transitionLeaveTimeout: React.PropTypes.number,
