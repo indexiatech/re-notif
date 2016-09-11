@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Notif = ({ kind, CustomComponent, componentClassName, actionLabel, onActionClick, id }) => {
+const Notif = ({ kind, componentClassName, actionLabel, onActionClick, id }) => {
   const _onActionClick = (ev) => {
     ev.preventDefault();
 
@@ -10,10 +10,6 @@ const Notif = ({ kind, CustomComponent, componentClassName, actionLabel, onActio
 
     onActionClick(id);
   };
-
-  if (CustomComponent) {
-    return <CustomComponent {...this.props} />;
-  }
 
   return (
     <div className={`${componentClassName} ${componentClassName}--${kind}`}>
@@ -40,21 +36,16 @@ Notif.propTypes = {
     React.PropTypes.string,
     React.PropTypes.number
   ]).isRequired,
-  message: React.PropTypes.string,
+  message: React.PropTypes.string.isRequired,
   kind: React.PropTypes.oneOf([
     'success',
     'info',
     'warning',
     'danger'
-  ]),
+  ]).isRequired,
   componentClassName: React.PropTypes.string,
   onActionClick: React.PropTypes.func,
-  actionLabel: React.PropTypes.string,
-  CustomComponent: React.PropTypes.oneOfType([
-    React.PropTypes.func,
-    React.PropTypes.node,
-    React.PropTypes.element
-  ]),
+  actionLabel: React.PropTypes.string
 };
 
 export default Notif;

@@ -4,22 +4,28 @@ import TransitionGroup from 'react-addons-css-transition-group';
 
 // These can be overridden by changing the componentClassName prop
 import '../../css/styles.css';
+import Notif from './Notif';
 
 // This checks to see if object is immutable and properly access it
 const getter = (obj, propName) => (obj.get ? obj.get(propName) : obj[propName]);
 
-import Notif from './Notif';
+const Notifs = (props) => {
+  const { notifications, className, componentClassName, CustomComponent, transitionEnterTimeout, transitionLeaveTimeout } = props;
 
-const Notifs = ({ notifications, className, componentClassName, transitionEnterTimeout, transitionLeaveTimeout }) => {
-  const renderedNotifications = notifications.map((notification) => (
-    <Notif
-      key={getter(notification, 'id')}
-      id={getter(notification, 'id')}
-      message={getter(notification, 'message')}
-      kind={getter(notification, 'kind')}
-      {...this.props}
-    />
-  ));
+  const renderedNotifications = notifications.map((notification) => {
+    if (CustomComponent) {
+      return <CustomComponent {...props} />;
+    }
+
+    return (
+      <Notif
+        key={getter(notification, 'id')}
+        id={getter(notification, 'id')}
+        message={getter(notification, 'message')}
+        kind={getter(notification, 'kind')}
+      />
+    );
+  });
   const classes = [
     `${componentClassName}__container`,
     className
@@ -41,6 +47,7 @@ const Notifs = ({ notifications, className, componentClassName, transitionEnterT
 Notifs.defaultProps = {
   className: null,
   componentClassName: 'notif',
+  CustomComponent: null,
   transitionEnterTimeout: 600,
   transitionLeaveTimeout: 600,
 };
@@ -48,9 +55,18 @@ Notifs.defaultProps = {
 Notifs.propTypes = {
   notifications: React.PropTypes.array.isRequired,
   className: React.PropTypes.string,
+  CustomComponent: React.PropTypes.oneOfType([
+    React.PropTypes.func,
+    React.PropTypes.node,
+    React.PropTypes.element
+  ]),
   componentClassName: React.PropTypes.string,
   transitionEnterTimeout: React.PropTypes.number,
   transitionLeaveTimeout: React.PropTypes.number,
 };
 
-export default connect((state) => ({ notifications: state.get ? state.get('notifs') : state.notifs }), {})(Notifs);
+function mapStateToProps(state) {
+  return { notifications: state.get ? state.get('notifs') : state.notifs };
+}
+
+export default connect(mapStateToProps)(Notifs);
