@@ -5,7 +5,7 @@ export default function notifs(domain = [], action) {
 
   switch (action.type) {
     case NOTIF_SEND:
-      return [action.payload, ...domain];
+      return [action.payload, ...domain.filter(({ id }) => id !== action.payload.id)];
     case NOTIF_DISMISS:
       return domain.filter(notif =>
           notif.id !== action.payload
