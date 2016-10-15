@@ -20,13 +20,6 @@
     "url": "https://github.com/indexiatech/re-notif/issues"
   },
   "homepage": "http://indexiatech.github.io/re-notif",
-  "dependencies": {
-    "eslint-plugin-import": "^1.6.0",
-    "react": "^15.3.2",
-    "react-addons-css-transition-group": "^15.3.2",
-    "react-redux": "^4.0.0",
-    "redux": "^3.6.0"
-  },
   "devDependencies": {
     "babel": "^5.8.23",
     "babel-core": "^5.8.25",
@@ -38,10 +31,14 @@
     "eslint-config-airbnb": "^8.0.0",
     "eslint-loader": "^1.1.1",
     "eslint-plugin-babel": "^3.3.0",
+    "eslint-plugin-import": "^1.6.0",
     "eslint-plugin-jsx-a11y": "^1.5.5",
     "eslint-plugin-react": "^5.2.0",
     "express": "^4.14.0",
+    "react": "^15.3.2",
+    "react-addons-css-transition-group": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-redux": "^4.0.0",
     "react-transform-hmr": "^1.0.1",
     "redux": "^3.6.0",
     "redux-devtools": "^3.3.1",

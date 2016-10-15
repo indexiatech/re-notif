@@ -4,9 +4,10 @@ var npmPath = path.resolve(__dirname, '../node_modules');
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
+  cache: true,
   entry: [
       'webpack-hot-middleware/client',
-      './index.js',
+      './index',
       './index.html'
   ],
   output: {
@@ -16,7 +17,7 @@ module.exports = {
   },
   resolveLoader: { modulesDirectories: [npmPath] },
   resolve: {
-    extensions: ['', '.css', '.js', '.json', '.jsx', '.webpack.js', '.web.js', '.html'],
+    extensions: ['', '.css', '.js', '.json', '.jsx', '.webpack.js', '.web.js'],
   },
   plugins: [
     // new webpack.optimize.OccurenceOrderPlugin(),
