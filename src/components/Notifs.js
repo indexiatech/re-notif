@@ -19,12 +19,12 @@ const Notifs = (props) => {
 
     return (
       <Notif
+        {...props}
         componentClassName={componentClassName}
         key={getter(notification, 'id')}
         id={getter(notification, 'id')}
         message={getter(notification, 'message')}
         kind={getter(notification, 'kind')}
-        {...props}
       />
     );
   });
