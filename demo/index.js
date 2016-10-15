@@ -3,7 +3,11 @@ import { render } from 'react-dom';
 import { Provider, connect } from 'react-redux';
 import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { reducer as notifReducer, actions as notifActions, Notifs } from '../src/index';
+import {
+  reducer as notifReducer,
+  actions as notifActions,
+  Notifs,
+} from 're-notif'; // eslint-disable-line import/no-unresolved
 const { notifSend, notifClear, notifDismiss } = notifActions;
 
 function CustomNotif(props) {

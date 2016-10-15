@@ -6,7 +6,7 @@ module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
       'webpack-hot-middleware/client',
-      './index',
+      './index.js',
       './index.html'
   ],
   output: {
@@ -14,10 +14,12 @@ module.exports = {
     filename: 'demo.js',
     publicPath: '/static/'
   },
+  resolveLoader: { modulesDirectories: [npmPath] },
   resolve: {
-    extensions: ['.css', '.js', '.json', '.jsx', '.webpack.js', '.web.js'],
+    extensions: ['', '.css', '.js', '.json', '.jsx', '.webpack.js', '.web.js', '.html'],
   },
   plugins: [
+    // new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.NormalModuleReplacementPlugin(
@@ -28,10 +30,17 @@ module.exports = {
     )
   ],
   module: {
+    preLoaders: [
+      {
+        test: /\.js?$/,
+        loader: 'eslint-loader',
+        exclude: npmPath,
+      },
+    ],
     loaders: [
     {
       test: /\.js?$/,
-      loaders: ['babel', 'eslint-loader'],
+      loaders: ['babel'],
       exclude: npmPath,
     },
     {
@@ -42,6 +51,9 @@ module.exports = {
       test: /\.css$/,
       loaders: ['style', 'css'],
       exclude: npmPath,
+    }, {
+      test: /\.png|\.jpg$/,
+      loaders: ['file-loader']
     }]
   }
 };
