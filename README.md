@@ -39,7 +39,7 @@ import { Notifs } from 'redux-notifications';
 
 Thanks to Redux, sending notification is simply done by firing an `Action`:
 
-```
+``` javascript
 import { reducer as notifReducer, actions as notifActions, Notifs } from 'redux-notifications';
 const { notifSend } = notifActions;
 
