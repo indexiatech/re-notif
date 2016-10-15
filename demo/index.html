@@ -8,6 +8,12 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <style>
+      .demo {
+        width: 100%;
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
       .notif-enter {
         opacity: 0.01;
         transition: opacity .5s ease-in;
@@ -28,8 +34,10 @@
     </style>
   </head>
   <body>
-    <h1>Demo</h1>
-    <div id="root"/>
-    <script src="/static/demo.js"></script>
+    <section class="demo">
+      <h1>Demo</h1>
+      <div id="root"/>
+    </section>
+    <script src="/static/bundle.js"></script>
   </body>
 </html>
