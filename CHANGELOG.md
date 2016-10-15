@@ -1,5 +1,13 @@
 # Redux-Notifications Changelog
 
+### 3.0.0 (October 15 2016)
+- Remove CSS from Notifs component, let user optionally import [#47](https://github.com/indexiatech/re-notif/pull/47)
+- Use stateless components for Notifs
+- Improve `CustomComponent` API [#41](https://github.com/indexiatech/re-notif/pull/41)
+- Do not display notifications with the same ID [#45](https://github.com/indexiatech/re-notif/pull/45)
+- Drop peerDependencies
+- Update devDependencies
+
 ### 2.1.0 (June 28 2016)
 - Fixed custom component rendering
 - Pass ID to notif component
