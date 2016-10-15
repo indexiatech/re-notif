@@ -1,9 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TransitionGroup from 'react-addons-css-transition-group';
-
-// These can be overridden by changing the componentClassName prop
-import '../../css/styles.css';
 import Notif from './Notif';
 
 // This checks to see if object is immutable and properly access it

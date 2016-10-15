@@ -35,6 +35,18 @@ import { Notifs } from 'redux-notifications';
 </Provider>
 ```
 
+##### 4. Optionally import default CSS
+`redux-notifications` uses [react-css-transition-group](https://facebook.github.io/react/docs/animation.html#high-level-api-reactcsstransitiongroup) with the following classes:
+- .notif-transition-enter
+- .notif-transition-enter-active
+- .notif-transition-leave
+- .notif-transition-leave-active
+
+To import the default stylesheet:
+```js
+import { styles } from 'redux-notifications';
+```
+
 ## Sending notifications
 
 Thanks to Redux, sending notification is simply done by firing an `Action`:
@@ -57,10 +69,6 @@ class Demo extends React.Component {
   }
 }
 ```
-
-## Demo
-
-[Watch the demo](http://indexiatech.github.io/re-notif) or [checkout its source code](https://github.com/indexiatech/re-notif/blob/master/demo/index.js)
 
 ## Actions
 
@@ -119,4 +127,4 @@ cd re-notif
 npm install
 npm run start
 ```
-Listening on localhost:3000
+Listening on localhost:9000
