@@ -21,8 +21,9 @@
   },
   "homepage": "http://indexiatech.github.io/re-notif",
   "dependencies": {
-    "react-addons-css-transition-group": "^15.3.1",
-    "react": "^15.3.1",
+    "eslint-plugin-import": "^2.0.1",
+    "react": "^15.3.2",
+    "react-addons-css-transition-group": "^15.3.2",
     "react-redux": "^4.0.0",
     "redux": "^3.6.0"
   },
@@ -37,10 +38,10 @@
     "eslint-config-airbnb": "^8.0.0",
     "eslint-loader": "^1.1.1",
     "eslint-plugin-babel": "^3.3.0",
-    "eslint-plugin-react": "^5.2.0",
     "eslint-plugin-jsx-a11y": "^1.5.5",
+    "eslint-plugin-react": "^5.2.0",
     "express": "^4.14.0",
-    "react-dom": "^15.3.1",
+    "react-dom": "^15.3.2",
     "react-transform-hmr": "^1.0.1",
     "redux": "^3.6.0",
     "redux-devtools": "^3.3.1",
@@ -48,8 +49,8 @@
     "rimraf": "^2.5.2",
     "serve-static": "^1.10.2",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.2",
-    "webpack-dev-middleware": "^1.7.0",
-    "webpack-hot-middleware": "^2.12.2"
+    "webpack": "^2.1.0-beta.25",
+    "webpack-dev-middleware": "^1.8.4",
+    "webpack-hot-middleware": "^2.13.0"
   }
 }

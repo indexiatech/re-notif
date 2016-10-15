@@ -10,7 +10,14 @@ import Notif from './Notif';
 const getter = (obj, propName) => (obj.get ? obj.get(propName) : obj[propName]);
 
 const Notifs = (props) => {
-  const { notifications, className, componentClassName, CustomComponent, transitionEnterTimeout, transitionLeaveTimeout } = props;
+  const {
+    notifications,
+    className,
+    componentClassName,
+    CustomComponent,
+    transitionEnterTimeout,
+    transitionLeaveTimeout,
+  } = props;
 
   const renderedNotifications = notifications.map((notification) => {
     if (CustomComponent) {
@@ -30,7 +37,7 @@ const Notifs = (props) => {
   });
   const classes = [
     `${componentClassName}__container`,
-    className
+    className,
   ].join(' ').split();
 
   return (
@@ -60,7 +67,7 @@ Notifs.propTypes = {
   CustomComponent: React.PropTypes.oneOfType([
     React.PropTypes.func,
     React.PropTypes.node,
-    React.PropTypes.element
+    React.PropTypes.element,
   ]),
   componentClassName: React.PropTypes.string,
   transitionEnterTimeout: React.PropTypes.number,

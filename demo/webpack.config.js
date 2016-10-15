@@ -14,9 +14,8 @@ module.exports = {
     filename: 'demo.js',
     publicPath: '/static/'
   },
-  resolveLoader: { modulesDirectories: [npmPath] },
   resolve: {
-    extensions: ['', '.css', '.js', '.json', '.jsx', '.webpack.js', '.web.js'],
+    extensions: ['.css', '.js', '.json', '.jsx', '.webpack.js', '.web.js'],
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -29,17 +28,10 @@ module.exports = {
     )
   ],
   module: {
-    preLoaders: [
-      {
-        test: /\.js?$/,
-        loader: 'eslint-loader',
-        exclude: npmPath,
-      },
-    ],
     loaders: [
     {
       test: /\.js?$/,
-      loaders: ['babel'],
+      loaders: ['babel', 'eslint-loader'],
       exclude: npmPath,
     },
     {
