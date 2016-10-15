@@ -4,29 +4,33 @@ import TransitionGroup from 'react-addons-css-transition-group';
 
 // These can be overridden by changing the componentClassName prop
 import '../../css/styles.css';
-
-const getter = (obj, propName) => (obj.get ? obj.get(propName) : obj[propName]);
-
 import Notif from './Notif';
 
-function Notifs(props) {
-  const { notifs, className, componentClassName, CustomComponent, transitionEnterTimeout, transitionLeaveTimeout, onActionClick, actionLabel } = props;
+// This checks to see if object is immutable and properly access it
+const getter = (obj, propName) => (obj.get ? obj.get(propName) : obj[propName]);
 
-  const items = notifs.map((notif) => (
-    <Notif
-      key={getter(notif, 'id')}
-      id={getter(notif, 'id')}
-      message={getter(notif, 'message')}
-      kind={getter(notif, 'kind')}
-      componentClassName={componentClassName}
-      CustomComponent={CustomComponent}
-      onActionClick={onActionClick}
-      actionLabel={actionLabel}
-    />
-  ));
+const Notifs = (props) => {
+  const { notifications, className, componentClassName, CustomComponent, transitionEnterTimeout, transitionLeaveTimeout } = props;
+
+  const renderedNotifications = notifications.map((notification) => {
+    if (CustomComponent) {
+      return <CustomComponent key={getter(notification, 'id')} {...props} />;
+    }
+
+    return (
+      <Notif
+        {...props}
+        componentClassName={componentClassName}
+        key={getter(notification, 'id')}
+        id={getter(notification, 'id')}
+        message={getter(notification, 'message')}
+        kind={getter(notification, 'kind')}
+      />
+    );
+  });
   const classes = [
     `${componentClassName}__container`,
-    className || null
+    className
   ].join(' ').split();
 
   return (
@@ -36,23 +40,22 @@ function Notifs(props) {
         transitionEnterTimeout={transitionEnterTimeout}
         transitionLeaveTimeout={transitionLeaveTimeout}
       >
-        {items}
+        {renderedNotifications}
       </TransitionGroup>
     </div>
   );
-}
+};
 
 Notifs.defaultProps = {
   className: null,
   componentClassName: 'notif',
+  CustomComponent: null,
   transitionEnterTimeout: 600,
   transitionLeaveTimeout: 600,
-  onActionClick: null,
-  action: null
 };
 
 Notifs.propTypes = {
-  notifs: React.PropTypes.array,
+  notifications: React.PropTypes.array.isRequired,
   className: React.PropTypes.string,
   CustomComponent: React.PropTypes.oneOfType([
     React.PropTypes.func,
@@ -62,8 +65,10 @@ Notifs.propTypes = {
   componentClassName: React.PropTypes.string,
   transitionEnterTimeout: React.PropTypes.number,
   transitionLeaveTimeout: React.PropTypes.number,
-  onActionClick: React.PropTypes.func,
-  actionLabel: React.PropTypes.string
 };
 
-export default connect((state) => ({ notifs: state.get ? state.get('notifs') : state.notifs }), {})(Notifs);
+function mapStateToProps(state) {
+  return { notifications: state.get ? state.get('notifs') : state.notifs };
+}
+
+export default connect(mapStateToProps)(Notifs);
