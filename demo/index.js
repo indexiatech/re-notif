@@ -27,7 +27,8 @@ CustomNotif.propTypes = {
 class Demo extends Component {
   constructor() {
     super();
-    this.state = { msg: 'hello!', kind: 'info', dismissAfter: 2000, customComponent: false, handleClick: false };
+    this.state = { id: '', msg: 'hello!', kind: 'info', dismissAfter: 2000, customComponent: false, handleClick: false };
+    this.handleIdChange = this.handleIdChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.onKindChange = this.onKindChange.bind(this);
     this.toggleCustomComponent = this.toggleCustomComponent.bind(this);
@@ -46,12 +47,17 @@ class Demo extends Component {
     this.setState({ msg: ev.target.value });
   }
 
+  handleIdChange(ev) {
+    this.setState({ id: ev.target.value });
+  }
+
   handleDismissAfter(ev) {
     this.setState({ dismissAfter: ev.target.value });
   }
 
   send() {
-    this.props.notifSend({ message: this.state.msg, kind: this.state.kind, dismissAfter: this.state.dismissAfter });
+    const id = (this.state.id === '') ? null : this.state.id;
+    this.props.notifSend({ id, message: this.state.msg, kind: this.state.kind, dismissAfter: this.state.dismissAfter });
   }
 
   clear() {
@@ -73,7 +79,7 @@ class Demo extends Component {
   }
 
   render() {
-    const { msg, kind, dismissAfter, customComponent, handleClick } = this.state;
+    const { id, msg, kind, dismissAfter, customComponent, handleClick } = this.state;
     const kinds = ['info', 'success', 'warning', 'danger'];
 
     let notifsComponent;
@@ -95,6 +101,10 @@ class Demo extends Component {
             <form className="form-group">
               <fieldset>
                 <legend>Re-Notif Demo</legend>
+                <div className="form-group">
+                    <label>Id</label>
+                    <input className="form-control" id="message" type="text" value={id} onChange={this.handleIdChange} />
+                </div>
                 <div className="form-group">
                     <label>Message</label>
                     <input className="form-control" id="message" type="text" value={msg} onChange={this.handleChange} />
