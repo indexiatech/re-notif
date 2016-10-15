@@ -1,4 +1,4 @@
-import { NOTIF_SEND, NOTIF_DISMISS, NOTIF_CLEAR } from '../actions/notifs';
+import { NOTIF_SEND, NOTIF_DISMISS, NOTIF_CLEAR } from './actions';
 
 export default function notifs(domain = [], action) {
   if (!action || !action.type) return domain;

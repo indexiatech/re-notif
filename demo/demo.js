@@ -7,6 +7,7 @@ import {
   reducer as notifReducer,
   actions as notifActions,
   Notifs,
+  styles, // eslint-disable-line no-unused-vars
 } from 're-notif'; // eslint-disable-line import/no-unresolved
 const { notifSend, notifClear, notifDismiss } = notifActions;
 
