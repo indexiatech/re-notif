@@ -5,7 +5,7 @@
   "scripts": {
     "start": "cd demo && webpack-dev-server --config webpack.config.js --progress --colors --port 9000",
     "clean": "rimraf lib",
-    "build": "npm run clean && BABEL_ENV=production babel src --out-dir lib",
+    "build": "npm run clean && BABEL_ENV=production babel src --out-dir lib && cp src/styles.css lib/styles.css",
     "lint": "eslint src",
     "prepublish": "npm run lint && npm run build"
   },
