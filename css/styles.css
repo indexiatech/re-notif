@@ -4,7 +4,7 @@
 }
 
 .notif-transition-enter-active {
-    opacity : 1;
+  opacity : 1;
 }
 
 .notif-transition-leave {
@@ -13,7 +13,7 @@
 }
 
 .notif-transition-leave-active {
-    opacity : 0.01;
+  opacity : 0.01;
 }
 
 .notif {
