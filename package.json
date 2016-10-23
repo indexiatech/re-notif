@@ -20,6 +20,9 @@
     "url": "https://github.com/indexiatech/re-notif/issues"
   },
   "homepage": "http://indexiatech.github.io/re-notif",
+  "dependencies": {
+    "react-addons-css-transition-group": "^15.3.2"
+  },
   "devDependencies": {
     "babel-cli": "^6.16.0",
     "babel-core": "^6.13.2",
@@ -38,7 +41,6 @@
     "eslint-plugin-react": "^5.2.0",
     "express": "^4.14.0",
     "react": "^15.3.2",
-    "react-addons-css-transition-group": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.0.0",
     "react-transform-hmr": "^1.0.1",
