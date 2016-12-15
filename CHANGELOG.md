@@ -1,5 +1,8 @@
 # Redux-Notifications Changelog
 
+### 3.1.0 (December 14 2016)
+- Give CustomComponent access to notification data [#51](https://github.com/indexiatech/re-notif/pull/51)
+
 ### 3.0.0 (October 15 2016)
 - Remove CSS from Notifs component, let user optionally import [#47](https://github.com/indexiatech/re-notif/pull/47)
 - Use stateless components for Notifs
