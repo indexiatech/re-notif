@@ -18,7 +18,14 @@ const Notifs = (props) => {
 
   const renderedNotifications = notifications.map((notification) => {
     if (CustomComponent) {
-      return <CustomComponent key={getter(notification, 'id')} {...props} />;
+      return <CustomComponent 
+        {...props}
+        componentClassName={componentClassName}
+        key={getter(notification, 'id')}
+        id={getter(notification, 'id')}
+        message={getter(notification, 'message')}
+        kind={getter(notification, 'kind')}
+      />;
     }
 
     return (
