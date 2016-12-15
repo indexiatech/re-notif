@@ -1,6 +1,6 @@
 {
   "name": "redux-notifications",
-  "version": "3.0.2",
+  "version": "3.0.1",
   "description": "Redux & React based Notifications center",
   "scripts": {
     "start": "cd demo && webpack-dev-server --config webpack.config.js --progress --colors --port 9000",
