@@ -36,7 +36,7 @@ Notif.propTypes = {
     React.PropTypes.string,
     React.PropTypes.number,
   ]).isRequired,
-  message: React.PropTypes.string.isRequired,
+  message: React.PropTypes.node.isRequired,
   kind: React.PropTypes.oneOf([
     'success',
     'info',
