@@ -21,6 +21,7 @@
   },
   "homepage": "http://indexiatech.github.io/re-notif",
   "dependencies": {
+    "object-assign": "^4.1.1",
     "react-addons-css-transition-group": "^15.3.2"
   },
   "devDependencies": {
