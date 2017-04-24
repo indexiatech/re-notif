@@ -44,7 +44,7 @@ import { Notifs } from 'redux-notifications';
 
 To import the default stylesheet:
 ```js
-import { styles } from 'redux-notifications';
+import 'redux-notifications/lib/styles.css';
 ```
 
 ## Sending notifications
