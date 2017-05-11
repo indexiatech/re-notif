@@ -74,8 +74,8 @@ class Demo extends React.Component {
 
 #### `actions.notifSend({config})`
 
-##### `config.message : string` [required]
-> The notification message.
+##### `config.message : node` [required]
+> The notification message, can be one of: `string`, `integer`, `element` or `array` containing these types.
 
 ##### `config.kind : string` [optional] [default:'info']
 > The notification kind, can be one of: `info`, `success`, `warning`, `danger`.
