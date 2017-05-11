@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import TransitionGroup from 'react-addons-css-transition-group';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import Notif from './Notif';
 
 // This checks to see if object is immutable and properly access it
@@ -29,7 +29,6 @@ const Notifs = (props) => {
         />
       );
     }
-
     return (
       <Notif
         {...props}
@@ -48,13 +47,13 @@ const Notifs = (props) => {
 
   return (
     <div className={classes} >
-      <TransitionGroup
+      <CSSTransitionGroup
         transitionName={`${componentClassName}-transition`}
         transitionEnterTimeout={transitionEnterTimeout}
         transitionLeaveTimeout={transitionLeaveTimeout}
       >
         {renderedNotifications}
-      </TransitionGroup>
+      </CSSTransitionGroup>
     </div>
   );
 };
