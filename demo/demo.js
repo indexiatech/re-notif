@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { render } from 'react-dom';
 import { Provider, connect } from 'react-redux';
 import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
@@ -26,9 +27,9 @@ function CustomNotif(props) {
   );
 }
 CustomNotif.propTypes = {
-  id: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
-  message: React.PropTypes.string,
-  onActionClick: React.PropTypes.func,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  message: PropTypes.string,
+  onActionClick: PropTypes.func,
 };
 
 // React component
@@ -200,9 +201,9 @@ class Demo extends Component {
   }
 }
 Demo.propTypes = {
-  notifSend: React.PropTypes.func,
-  notifClear: React.PropTypes.func,
-  notifDismiss: React.PropTypes.func,
+  notifSend: PropTypes.func,
+  notifClear: PropTypes.func,
+  notifDismiss: PropTypes.func,
 };
 
 // Store:
