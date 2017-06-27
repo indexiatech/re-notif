@@ -1,11 +1,5 @@
 # Redux-Notifications Changelog
 
-### 3.2.0 (June 27 2017)
-- Migrate from React.PropTypes [#59](https://github.com/indexiatech/re-notif/pull/59)
-- Moving to new transition group method [#58](https://github.com/indexiatech/re-notif/pull/58)
-- Allow HTML/React elements in message content [#53](https://github.com/indexiatech/re-notif/pull/53)
-- Use Object-assign to support IE [#54](https://github.com/indexiatech/re-notif/pull/54/)
-
 ### 3.1.0 (December 14 2016)
 - Give CustomComponent access to notification data [#51](https://github.com/indexiatech/re-notif/pull/51)
 
