@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Notif = ({ kind, componentClassName, actionLabel, onActionClick, id, message }) => {
   const handleActionClick = (ev) => {
@@ -32,20 +33,20 @@ Notif.defaultProps = {
 };
 
 Notif.propTypes = {
-  id: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.number,
+  id: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
   ]).isRequired,
-  message: React.PropTypes.node.isRequired,
-  kind: React.PropTypes.oneOf([
+  message: PropTypes.node.isRequired,
+  kind: PropTypes.oneOf([
     'success',
     'info',
     'warning',
     'danger',
   ]).isRequired,
-  componentClassName: React.PropTypes.string,
-  onActionClick: React.PropTypes.func,
-  actionLabel: React.PropTypes.string,
+  componentClassName: PropTypes.string,
+  onActionClick: PropTypes.func,
+  actionLabel: PropTypes.string,
 };
 
 export default Notif;
