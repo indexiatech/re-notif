@@ -1,5 +1,8 @@
 # Redux-Notifications Changelog
 
+### 4.0.1 (June 27 2017)
+- Fix dependencies & add peerdependencies [#63](https://github.com/indexiatech/re-notif/pull/63)
+
 ### 4.0.0 (June 27 2017)
 - Remove import of styles.css [#56](https://github.com/indexiatech/re-notif/pull/56)
 
