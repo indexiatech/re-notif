@@ -3,6 +3,9 @@
 ### 4.0.0 (June 27 2017)
 - Remove import of styles.css [#56](https://github.com/indexiatech/re-notif/pull/56)
 
+### 3.2.1 (June 27 2017)
+- Fix dependencies & add peerdependencies [#63](https://github.com/indexiatech/re-notif/pull/63)
+
 ### 3.2.0 (June 27 2017)
 - Migrate from React.PropTypes [#59](https://github.com/indexiatech/re-notif/pull/59)
 - Moving to new transition group method [#58](https://github.com/indexiatech/re-notif/pull/58)
