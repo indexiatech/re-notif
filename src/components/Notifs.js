@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import TransitionGroup from 'react-addons-css-transition-group';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import Notif from './Notif';
+import PropTypes from 'prop-types';
 
 // This checks to see if object is immutable and properly access it
 const getter = (obj, propName) => (obj.get ? obj.get(propName) : obj[propName]);
@@ -29,7 +30,6 @@ const Notifs = (props) => {
         />
       );
     }
-
     return (
       <Notif
         {...props}
@@ -48,13 +48,13 @@ const Notifs = (props) => {
 
   return (
     <div className={classes} >
-      <TransitionGroup
+      <CSSTransitionGroup
         transitionName={`${componentClassName}-transition`}
         transitionEnterTimeout={transitionEnterTimeout}
         transitionLeaveTimeout={transitionLeaveTimeout}
       >
         {renderedNotifications}
-      </TransitionGroup>
+      </CSSTransitionGroup>
     </div>
   );
 };
@@ -68,16 +68,16 @@ Notifs.defaultProps = {
 };
 
 Notifs.propTypes = {
-  notifications: React.PropTypes.array.isRequired,
-  className: React.PropTypes.string,
-  CustomComponent: React.PropTypes.oneOfType([
-    React.PropTypes.func,
-    React.PropTypes.node,
-    React.PropTypes.element,
+  notifications: PropTypes.array.isRequired,
+  className: PropTypes.string,
+  CustomComponent: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.node,
+    PropTypes.element,
   ]),
-  componentClassName: React.PropTypes.string,
-  transitionEnterTimeout: React.PropTypes.number,
-  transitionLeaveTimeout: React.PropTypes.number,
+  componentClassName: PropTypes.string,
+  transitionEnterTimeout: PropTypes.number,
+  transitionLeaveTimeout: PropTypes.number,
 };
 
 function mapStateToProps(state) {
