@@ -48,12 +48,13 @@ const Notifs = (props) => {
 
   return (
     <div className={classes} >
-      <TransitionGroup
-        transitionName={`${componentClassName}-transition`}
-        transitionEnterTimeout={transitionEnterTimeout}
-        transitionLeaveTimeout={transitionLeaveTimeout}
-      >
+      <TransitionGroup>
+        <CSSTransition
+          classNames={`${componentClassName}-transition`}
+          timeout={{ enter: transitionEnterTimeout, exit: transitionLeaveTimeout }}
+        >
         {renderedNotifications}
+        </CSSTransition>
       </TransitionGroup>
     </div>
   );
