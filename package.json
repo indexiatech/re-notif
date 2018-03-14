@@ -7,7 +7,8 @@
     "clean": "rimraf lib",
     "build": "npm run clean && BABEL_ENV=production babel src --out-dir lib && cp src/styles.css lib/styles.css",
     "lint": "eslint src",
-    "prepublish": "npm run lint && npm run build"
+    "prepublish": "npm run lint && npm run build",
+    "postinstall": "npm run build"
   },
   "main": "lib/index.js",
   "repository": {
