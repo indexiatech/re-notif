@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Notif from './Notif';
 import PropTypes from 'prop-types';
 
@@ -14,20 +14,25 @@ const Notifs = (props) => {
     componentClassName,
     CustomComponent,
     transitionEnterTimeout,
-    transitionLeaveTimeout,
+    transitionExitTimeout,
   } = props;
 
   const renderedNotifications = notifications.map((notification) => {
     if (CustomComponent) {
       return (
-        <CustomComponent
-          {...props}
-          componentClassName={componentClassName}
+        <CSSTransition
           key={getter(notification, 'id')}
-          id={getter(notification, 'id')}
-          message={getter(notification, 'message')}
-          kind={getter(notification, 'kind')}
-        />
+          classNames={`${componentClassName}-transition`}
+          timeout={{ enter: transitionEnterTimeout, exit: transitionExitTimeout }}
+        >
+          <CustomComponent
+            {...props}
+            componentClassName={componentClassName}
+            id={getter(notification, 'id')}
+            message={getter(notification, 'message')}
+            kind={getter(notification, 'kind')}
+          />
+        </CSSTransition>
       );
     }
     return (
@@ -48,13 +53,10 @@ const Notifs = (props) => {
 
   return (
     <div className={classes} >
-      <CSSTransitionGroup
-        transitionName={`${componentClassName}-transition`}
-        transitionEnterTimeout={transitionEnterTimeout}
-        transitionLeaveTimeout={transitionLeaveTimeout}
+      <TransitionGroup>
       >
         {renderedNotifications}
-      </CSSTransitionGroup>
+      </TransitionGroup>
     </div>
   );
 };
@@ -64,7 +66,7 @@ Notifs.defaultProps = {
   componentClassName: 'notif',
   CustomComponent: null,
   transitionEnterTimeout: 600,
-  transitionLeaveTimeout: 600,
+  transitionExitTimeout: 600,
 };
 
 Notifs.propTypes = {
@@ -77,7 +79,7 @@ Notifs.propTypes = {
   ]),
   componentClassName: PropTypes.string,
   transitionEnterTimeout: PropTypes.number,
-  transitionLeaveTimeout: PropTypes.number,
+  transitionExitTimeout: PropTypes.number,
 };
 
 function mapStateToProps(state) {

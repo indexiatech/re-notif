@@ -7,12 +7,12 @@
   opacity : 1;
 }
 
-.notif-transition-leave {
+.notif-transition-exit {
   opacity    : 1;
   transition : opacity .5s ease-in;
 }
 
-.notif-transition-leave-active {
+.notif-transition-exit-active {
   opacity : 0.01;
 }
 
