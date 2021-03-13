@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, forwardRef, StrictMode } from 'react';
 import PropTypes from 'prop-types';
 import { render } from 'react-dom';
 import { Provider, connect } from 'react-redux';
@@ -12,20 +12,19 @@ import {
 } from 're-notif'; // eslint-disable-line import/no-unresolved
 const { notifSend, notifClear, notifDismiss } = notifActions;
 
-function CustomNotif(props) {
-  return (
-    <button
-      className="btn btn-primary btn-lg btn-block"
-      onClick={() => {
-        if (props.onActionClick) {
-          props.onActionClick(props.id);
-        }
-      }}
-    >
-      {props.message}
-    </button>
-  );
-}
+const CustomNotif = forwardRef((props, ref) => (
+  <button
+    ref={ref}
+    className="btn btn-primary btn-lg btn-block"
+    onClick={() => {
+      if (props.onActionClick) {
+        props.onActionClick(props.id);
+      }
+    }}
+  >
+    {props.message}
+  </button>
+));
 CustomNotif.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   message: PropTypes.string,
@@ -227,8 +226,10 @@ const App = connect(
 )(Demo);
 
 render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </StrictMode>,
   document.getElementById('root')
 );

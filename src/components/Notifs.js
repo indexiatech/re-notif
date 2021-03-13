@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
-import Notif from './Notif';
+import { TransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
+import { NotifTransition } from './NotifTransition';
 
 // This checks to see if object is immutable and properly access it
 const getter = (obj, propName) => (obj.get ? obj.get(propName) : obj[propName]);
@@ -17,44 +17,38 @@ const Notifs = (props) => {
     transitionLeaveTimeout,
   } = props;
 
-  const renderedNotifications = notifications.map((notification) => {
-    if (CustomComponent) {
-      return (
-        <CustomComponent
-          {...props}
-          componentClassName={componentClassName}
-          key={getter(notification, 'id')}
-          id={getter(notification, 'id')}
-          message={getter(notification, 'message')}
-          kind={getter(notification, 'kind')}
-        />
-      );
-    }
-    return (
-      <Notif
-        {...props}
-        componentClassName={componentClassName}
-        key={getter(notification, 'id')}
-        id={getter(notification, 'id')}
-        message={getter(notification, 'message')}
-        kind={getter(notification, 'kind')}
-      />
-    );
-  });
+  const renderedNotifications = notifications.map((notification) => (
+    <NotifTransition
+      // Custom component props
+      {...props}
+
+      // CSSTransition props
+      key={getter(notification, 'id')}
+      classNames={`${componentClassName}-transition`}
+      timeout={{
+        enter: transitionEnterTimeout,
+        exit: transitionLeaveTimeout,
+      }}
+
+      // NotifTransition props
+      id={getter(notification, 'id')}
+      message={getter(notification, 'message')}
+      kind={getter(notification, 'kind')}
+      CustomComponent={CustomComponent}
+      componentClassName={componentClassName}
+    />
+  ));
+
   const classes = [
     `${componentClassName}__container`,
     className,
   ].join(' ').split();
 
   return (
-    <div className={classes} >
-      <CSSTransitionGroup
-        transitionName={`${componentClassName}-transition`}
-        transitionEnterTimeout={transitionEnterTimeout}
-        transitionLeaveTimeout={transitionLeaveTimeout}
-      >
+    <div className={classes}>
+      <TransitionGroup>
         {renderedNotifications}
-      </CSSTransitionGroup>
+      </TransitionGroup>
     </div>
   );
 };
@@ -71,9 +65,9 @@ Notifs.propTypes = {
   notifications: PropTypes.array.isRequired,
   className: PropTypes.string,
   CustomComponent: PropTypes.oneOfType([
-    PropTypes.func,
     PropTypes.node,
     PropTypes.element,
+    PropTypes.elementType,
   ]),
   componentClassName: PropTypes.string,
   transitionEnterTimeout: PropTypes.number,

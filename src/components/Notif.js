@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
-const Notif = ({ kind, componentClassName, actionLabel, onActionClick, id, message }) => {
+const Notif = forwardRef(({ kind, componentClassName, actionLabel, onActionClick, id, message }, ref) => {
   const handleActionClick = (ev) => {
     ev.preventDefault();
 
@@ -13,7 +13,7 @@ const Notif = ({ kind, componentClassName, actionLabel, onActionClick, id, messa
   };
 
   return (
-    <div className={`${componentClassName} ${componentClassName}--${kind}`}>
+    <div ref={ref} className={`${componentClassName} ${componentClassName}--${kind}`}>
       <div className={`${componentClassName}__icon`} />
       <div className={`${componentClassName}__content`}>
         <span className={`${componentClassName}__message`}>{message}</span>
@@ -26,7 +26,7 @@ const Notif = ({ kind, componentClassName, actionLabel, onActionClick, id, messa
       <div className={`${componentClassName}__close`} />
     </div>
   );
-};
+});
 
 Notif.defaultProps = {
   kind: 'info',
