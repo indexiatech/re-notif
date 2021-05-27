@@ -1,5 +1,9 @@
 # `redux-notifications`
 
+> ✔️: **Use the [use-disposable-list](https://github.com/asaf/use-disposable-list) (unstyled) hook that can work with any css framework!**
+
+<br/><br/>
+
 > :warning: The previous package `re-notif` has been deprecated on NPM and renamed to `redux-notifications`. A list of changes can be found in the Changelog. Please update your applications accordingly.
 
 [React](https://github.com/facebook/react) & [Redux](https://github.com/rackt/redux) based notifications center.
