@@ -20,12 +20,15 @@
     "url": "https://github.com/indexiatech/re-notif/issues"
   },
   "homepage": "http://indexiatech.github.io/re-notif",
+  "typings": "./index.d.ts",
   "dependencies": {
     "object-assign": "^4.1.1",
     "prop-types": "^15.7.2",
     "react-transition-group": "^4.4.1"
   },
   "devDependencies": {
+    "@types/react": "^16.0.31",
+    "@types/redux": "^3.6.0",
     "babel-cli": "^6.16.0",
     "babel-core": "^6.13.2",
     "babel-eslint": "^6.1.2",
